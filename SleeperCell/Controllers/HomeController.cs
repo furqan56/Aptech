@@ -13,8 +13,7 @@ namespace SleeperCell.Controllers
             return View();
             //Aqib
             //Furqan
-            //AMMAR
-            //Afnan and Aqib
+            //Asma
         }
 
         public ActionResult About()
