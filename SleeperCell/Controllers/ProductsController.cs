@@ -9,7 +9,7 @@ namespace SleeperCell.Controllers
     public class ProductsController : Controller
     {
         // GET: Products
-        public ActionResult Index()
+        public ActionResult ProductDetail()
         {
             return View();
         }
