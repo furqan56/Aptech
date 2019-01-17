@@ -6,12 +6,17 @@ using System.Web.Mvc;
 using SleeperCell.Models;
 namespace SleeperCell.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductController : Controller
     {
-        // GET: Products
+             
+            // GET: Products
         public ActionResult Index()
         {
             
+
+            
+
+
             
             return View();
         }
