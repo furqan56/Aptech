@@ -191,8 +191,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1729,6 +1731,8 @@
     <Content Include="Views\Shared\_headerPartial.cshtml" />
     <Content Include="Views\Shared\_sidebarPartial.cshtml" />
     <Content Include="Views\Shared\_footerPartial.cshtml" />
+    <Content Include="Views\Products\GetProduct.cshtml" />
+    <Content Include="Views\Products\getAllProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
