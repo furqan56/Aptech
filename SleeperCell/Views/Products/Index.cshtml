@@ -1,75 +1,65 @@
-﻿
+﻿@model IEnumerable<SleeperCell.Models.ProductViewModel>
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Products";
 }
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-    <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
 
-        td, th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
+<h2>Product List</h2>
 
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-    </style>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+  <tr>
+    <th>
+      @Html.DisplayNameFor(model => model.CategoryName)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Barcode)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Name)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Description)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.UnitPrice)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.QuantityInHand)
+    </th>
 
+    <th></th>
+  </tr>
 
-</head>
-<body>
+@foreach (var item in Model) {
+  <tr>
+    <td>
+      @Html.DisplayFor(modelItem => item.CategoryName)
+    </td>
+    <td>
+      @Html.DisplayFor(modelItem => item.Barcode)
+    </td>
+    <td>
+      @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+      @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+      @Html.DisplayFor(modelItem => item.UnitPrice)
+    </td>
+    <td>
+      @Html.DisplayFor(modelItem => item.QuantityInHand)
+    </td>
 
-    <h2>Table</h2>
+    <td>
+      @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+      @Html.ActionLink("Details", "Details", new {id = item.Id}) |
+      @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+    </td>
+  </tr>
+}
 
-    <table>
-        <tr>
-            <th>NAME</th>
-            <th>PRICE</th>
-            <th>COMPANY</th>
-        </tr>
-        <tr>
-            <td>S7</td>
-            <td>50000</td>
-            <td>SAMSUNG</td>
-        </tr>
-        <tr>
-            <td>S8</td>
-            <td>60000</td>
-            <td>SAMSUNG</td>
-        </tr>
-        <tr>
-            <td>6S</td>
-            <td>40000</td>
-            <td>IPHONE</td>
-        </tr>
-        <tr>
-            <td>A3</td>
-            <td>30000</td>
-            <td>NOKIA</td>
-        </tr>
-        <tr>
-            <td>A5</td>
-            <td>33000</td>
-            <td>NOKIA</td>
-        </tr>
-        <tr>
-            <td>F3</td>
-            <td>3000</td>
-            <td>OPPO</td>
-        </tr>
-    </table>
-
-</body>
-</html>
-
-
+</table>
