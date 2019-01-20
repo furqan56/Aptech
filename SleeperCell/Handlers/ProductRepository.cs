@@ -16,6 +16,13 @@ namespace SleeperCell.Handlers
             return ProductsStore;
         }
 
+        public ProductViewModel FindProduct(int Id)
+        {
+            ProductViewModel pr = ProductsStore.Where(S => S.Id == Id).FirstOrDefault();
+            return(pr);
+        }
+
+
         public void AddProduct(ProductViewModel model)
         {
             model.Id = ProductId++;
