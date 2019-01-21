@@ -27,50 +27,12 @@ namespace SleeperCell.Controllers
         {
             return View();
         }
-
-        [HttpGet]
-        public ActionResult Delete(int Id)
-        {
-
-            return View(_productRepository.FindProduct(Id));
-        }
-
-        [HttpGet]        
-        public ActionResult Details(int Id)
-        {
-            return View(_productRepository.FindProduct(Id));
-        } 
-
-        [HttpGet, ActionName("Edit")]
-        public ActionResult Edit1(int Id)
-        {
-            return View(_productRepository.FindProduct(Id));
-        }
-
         [HttpPost]
         public ActionResult Create(ProductViewModel model)
         {
             if (ModelState.IsValid)
             {
                 _productRepository.AddProduct(model);
-                return RedirectToAction("Index");
-            }
-            return View(model);
-        }
-
-        [HttpPost]
-        public ActionResult Delete(ProductViewModel model)
-        {
-            _productRepository.Delete(model.Id);
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public ActionResult Edit(ProductViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                _productRepository.Update(model);
                 return RedirectToAction("Index");
             }
             return View(model);
