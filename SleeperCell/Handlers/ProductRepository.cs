@@ -22,6 +22,12 @@ namespace SleeperCell.Handlers
             ProductsStore.Add(model);
         }
 
+        public ProductViewModel FindProduct(int Id)
+        {
+            ProductViewModel Pr = ProductsStore.Where(p => p.Id == Id).FirstOrDefault();
+            return (Pr);
+        }
+
         public void Update(ProductViewModel model)
         {
             ProductsStore.RemoveAll(p => p.Id == model.Id);
