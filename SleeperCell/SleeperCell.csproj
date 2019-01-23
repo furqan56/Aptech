@@ -196,7 +196,7 @@
     <Compile Include="Handlers\ProductRepository.cs" />
     <Compile Include="Handlers\VendorRepositry.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\CatagoryViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
