@@ -6,7 +6,7 @@ using SleeperCell.Models;
 
 namespace SleeperCell.Handlers
 {
-    public class CategoryRepositry
+    public class CategoryRepository
     {
         public static List<CategoryViewModel> CategoryStore { get; private set; } = new List<CategoryViewModel>();
         public static int CategoryId { get; private set; } = 1;

@@ -10,22 +10,22 @@ namespace SleeperCell.Controllers
 {
     public class CategoryController : Controller
     {
-        private CategoryRepositry _CategoryRepositry;
+        private CategoryRepository _categoryRepository;
 
         public CategoryController()
         {
-            _CategoryRepositry = new CategoryRepositry();
+            _categoryRepository = new CategoryRepository();
         }
         // GET: Category
         public ActionResult Index()
         {
-            return View(_CategoryRepositry.GetAllCategory());
+            return View(_categoryRepository.GetAllCategory());
         }
 
         // GET: Category/Details/5
         public ActionResult Details(int id)
         {
-            return View(_CategoryRepositry.FindCategory(id));
+            return View(_categoryRepository.FindCategory(id));
         }
 
         // GET: Category/Create
@@ -41,7 +41,7 @@ namespace SleeperCell.Controllers
             try
             {
                 // TODO: Add insert logic here
-                _CategoryRepositry.AddCategory(model);
+                _categoryRepository.AddCategory(model);
                 return RedirectToAction("Index");
             }
             catch
@@ -53,7 +53,7 @@ namespace SleeperCell.Controllers
         // GET: Category/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(_CategoryRepositry.FindCategory(id));
+            return View(_categoryRepository.FindCategory(id));
         }
 
         // POST: Category/Edit/5
@@ -63,7 +63,7 @@ namespace SleeperCell.Controllers
             try
             {
                 // TODO: Add update logic here
-                _CategoryRepositry.Update(model);
+                _categoryRepository.Update(model);
                 return RedirectToAction("Index");
             }
             catch
@@ -75,7 +75,7 @@ namespace SleeperCell.Controllers
         // GET: Category/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(_CategoryRepositry.FindCategory(id));
+            return View(_categoryRepository.FindCategory(id));
         }
 
         // POST: Category/Delete/5
@@ -85,7 +85,7 @@ namespace SleeperCell.Controllers
             try
             {
                 // TODO: Add delete logic here
-                _CategoryRepositry.Delete(model.Id);
+                _categoryRepository.Delete(model.Id);
                 return RedirectToAction("Index");
             }
             catch

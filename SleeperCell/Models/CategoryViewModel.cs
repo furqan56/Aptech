@@ -6,10 +6,10 @@ using System.ComponentModel;
 
 namespace SleeperCell.Models
 {
-    public class CatagoryViewModel
+    public class CategoryViewModel
     {
         public int Id { get; set; }
-        [DisplayName("Catagory Name")]
+        [DisplayName("Category Name")]
         public string Name { get; set; }
         public string Description { get; set; }
     }

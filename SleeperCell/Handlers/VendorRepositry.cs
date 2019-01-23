@@ -8,7 +8,6 @@ namespace SleeperCell.Handlers
 {
     public class VendorRepository
     {
-
         public static List<VendorViewModel> VendorsStore { get; private set; } = new List<VendorViewModel>();
         public static int VendorId { get; private set; } = 1;
         public List<VendorViewModel> GetAllVendors()
