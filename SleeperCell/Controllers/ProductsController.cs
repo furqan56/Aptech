@@ -7,11 +7,11 @@ using SleeperCell.Handlers;
 using SleeperCell.Models;
 namespace SleeperCell.Controllers
 {
-    public class ProductController : Controller
+    public class ProductsController : Controller
     {
         private ProductRepository _productRepository;
         // GET: Products
-        public ProductController()
+        public ProductsController()
         {
             _productRepository = new ProductRepository();
         }
