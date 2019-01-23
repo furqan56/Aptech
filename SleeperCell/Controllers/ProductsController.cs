@@ -21,11 +21,41 @@ namespace SleeperCell.Controllers
         {
             return View(_productRepository.GetAllProducts());
         }
-
+        [HttpGet]
+        public ActionResult Edit(int Id)
+        {
+            return View(_productRepository.FindProduct(Id));
+        }
         [HttpGet]
         public ActionResult Create()
         {
             return View();
+        }
+        [HttpGet]
+        public ActionResult Delete(int Id)
+        {
+            return View(_productRepository.FindProduct(Id));
+        }
+        [HttpGet]
+        public ActionResult Details(int Id)
+        {
+            return View(_productRepository.FindProduct(Id));
+        }
+        [HttpPost]
+        public ActionResult Delete(ProductViewModel model)
+        {
+            _productRepository.Delete(model.Id);
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult Edit(ProductViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _productRepository.Update(model);
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
         [HttpPost]
         public ActionResult Create(ProductViewModel model)
