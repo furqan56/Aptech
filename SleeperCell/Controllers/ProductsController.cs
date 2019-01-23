@@ -21,6 +21,7 @@ namespace SleeperCell.Controllers
         {
             return View(_productRepository.GetAllProducts());
         }
+ 
 
         [HttpGet]
         public ActionResult Create()

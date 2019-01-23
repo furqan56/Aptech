@@ -1,7 +1,10 @@
-﻿namespace SleeperCell.Models
+﻿using System.ComponentModel;
+namespace SleeperCell.Models
 {
     public class ProductViewModel
     {
+        
+        [DisplayName("id")]
         public int Id { get; set; }
         public string Barcode { get; set; } 
         public string Name { get; set; }
