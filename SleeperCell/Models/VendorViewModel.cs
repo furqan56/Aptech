@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.ComponentModel;
 
 namespace SleeperCell.Models
 {
-    public class CategoryViewModel
+    public class VendorViewModel
     {
         public int Id { get; set; }
-        [DisplayName("Category Name")]
         public string Name { get; set; }
-        public string Description { get; set; }
+        public string Phone { get; set; }
+        public string Address { get; set; }
+        public string Company { get; set; }
     }
 }
