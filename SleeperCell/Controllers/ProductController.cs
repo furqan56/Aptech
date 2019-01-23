@@ -9,13 +9,13 @@ namespace SleeperCell.Controllers
 {
     public class ProductController : Controller
     {
-        private ProductRepository  _productRepository;
+        private ProductRepository _productRepository;
         // GET: Products
         public ProductController()
         {
             _productRepository = new ProductRepository();
         }
-            
+
         public ActionResult Index()
         {
             return View(_productRepository.GetAllProducts());
@@ -28,7 +28,7 @@ namespace SleeperCell.Controllers
         [HttpPost]
         public ActionResult Create(ProductViewModel model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _productRepository.AddProduct(model);
                 return RedirectToAction("Index");
@@ -36,20 +36,41 @@ namespace SleeperCell.Controllers
 
             return View(model);
         }
-        [HttpPut]
+
+
+        [HttpGet]
+        public ActionResult Update(int id)
+        {
+            var product = _productRepository.FindProductDetail(id);
+            return View(product);
+
+        }
+        [HttpPost]
         public ActionResult Update(ProductViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                _productRepository.Update(model);
+                return RedirectToAction("Index");
 
-            _productRepository.Update(model);
+            }
+            return View(model);
+
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            var product = _productRepository.FindProductDetail(id);
+            return View(product);
+        }
+
+        [HttpDelete]
+        public ActionResult Delete(ProductViewModel model)
+        {
+            _productRepository.Delete(model);
 
             return View(model);
         }
-
-        //public ActionResult Delete(ProductViewModel model)
-        //{
-        //    _productRepository.Delete(model);
-
-        //    return View();
-        //}
     }
 }

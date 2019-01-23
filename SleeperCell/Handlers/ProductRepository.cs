@@ -21,15 +21,20 @@ namespace SleeperCell.Handlers
             ProductsStore.Add(model);
         }
 
+        public ProductViewModel FindProductDetail(int id)
+        {
+            return ProductsStore.FirstOrDefault(p => p.ID == id);
+        }
+
         public void Update(ProductViewModel model)
         {
             ProductsStore.RemoveAll(p => p.ID == model.ID);
             ProductsStore.Add(model);
         }
 
-        public void Delete(int id)
+        public void Delete(ProductViewModel model)
         {
-            ProductsStore.RemoveAll(p => p.ID == id);
+            ProductsStore.RemoveAll(p => p.ID == model.ID);
         }
     }
 }
