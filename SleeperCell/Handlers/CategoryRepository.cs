@@ -16,7 +16,7 @@ namespace SleeperCell.Handlers
 
         public CategoryRepository()
         {
-            //_context = new SleeperCellContext();
+            _context = new SleeperCellContext();
         }
         public List<CategoryViewModel> GetAllCategory()
         {

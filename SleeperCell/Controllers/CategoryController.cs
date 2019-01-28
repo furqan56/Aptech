@@ -44,7 +44,7 @@ namespace SleeperCell.Controllers
                 _categoryRepository.AddCategory(model);
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
                 return View(model);
             }
