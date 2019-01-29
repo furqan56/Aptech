@@ -183,6 +183,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Context\SleeperCellContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -197,6 +198,11 @@
     <Compile Include="Handlers\ProductRepository.cs" />
     <Compile Include="Handlers\StockRepository.cs" />
     <Compile Include="Handlers\VendorRepositry.cs" />
+    <Compile Include="Migrations\201901251108296_Init.cs" />
+    <Compile Include="Migrations\201901251108296_Init.Designer.cs">
+      <DependentUpon>201901251108296_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -204,7 +210,9 @@
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\StockViewModel.cs" />
     <Compile Include="Models\VendorViewModel.cs" />
-    <Compile Include="ObjectModels\ProductModel.cs" />
+    <Compile Include="ObjectModel\Category.cs" />
+    <Compile Include="ObjectModel\Product.cs" />
+    <Compile Include="ObjectModel\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1773,6 +1781,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201901251108296_Init.resx">
+      <DependentUpon>201901251108296_Init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
