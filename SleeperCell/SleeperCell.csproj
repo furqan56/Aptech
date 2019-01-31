@@ -202,6 +202,10 @@
     <Compile Include="Migrations\201901251108296_Init.Designer.cs">
       <DependentUpon>201901251108296_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901281032086_SaleOrder_Stock_AndRelationCreated.cs" />
+    <Compile Include="Migrations\201901281032086_SaleOrder_Stock_AndRelationCreated.Designer.cs">
+      <DependentUpon>201901281032086_SaleOrder_Stock_AndRelationCreated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
@@ -212,6 +216,8 @@
     <Compile Include="Models\VendorViewModel.cs" />
     <Compile Include="ObjectModel\Category.cs" />
     <Compile Include="ObjectModel\Product.cs" />
+    <Compile Include="ObjectModel\SaleOrder.cs" />
+    <Compile Include="ObjectModel\SaleOrderDetail.cs" />
     <Compile Include="ObjectModel\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -1786,6 +1792,9 @@
     <EmbeddedResource Include="Migrations\201901251108296_Init.resx">
       <DependentUpon>201901251108296_Init.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901281032086_SaleOrder_Stock_AndRelationCreated.resx">
+      <DependentUpon>201901281032086_SaleOrder_Stock_AndRelationCreated.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1805,7 +1814,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62439</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:62439/</IISUrl>
+          <IISUrl>http://localhost:4567/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:4567/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
