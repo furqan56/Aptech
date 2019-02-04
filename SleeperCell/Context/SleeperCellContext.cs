@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using SleeperCell.Context.Configuration;
 
 namespace SleeperCell.Context
 {
@@ -11,7 +12,17 @@ namespace SleeperCell.Context
     {
         public SleeperCellContext() : base("name=DefaultConnection")
         {
+            
+        }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.AddFromAssembly(typeof(ProductConfiguration).Assembly);
+
+
+           
+
+            base.OnModelCreating(modelBuilder);
         }
         public DbSet<Vendor> Vendors { get; set; }
         public DbSet<Category> Categories { get; set; }
