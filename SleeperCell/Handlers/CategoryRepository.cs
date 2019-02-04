@@ -20,8 +20,6 @@ namespace SleeperCell.Handlers
         }
         public List<CategoryViewModel> GetAllCategory()
         {
-            var db = new SleeperCellContext().Database;
-            _context = new SleeperCellContext();
             var categories = _context.Categories.ToList();
 
             var categoryViewModel = new List<CategoryViewModel>();

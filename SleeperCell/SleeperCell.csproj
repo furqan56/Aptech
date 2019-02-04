@@ -196,6 +196,7 @@
     </Compile>
     <Compile Include="Handlers\CategoryRepository.cs" />
     <Compile Include="Handlers\ProductRepository.cs" />
+    <Compile Include="Handlers\ProductStockRepository.cs" />
     <Compile Include="Handlers\StockRepository.cs" />
     <Compile Include="Handlers\VendorRepositry.cs" />
     <Compile Include="Migrations\201901251108296_Init.cs" />
@@ -1774,6 +1775,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\SaleOrder\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

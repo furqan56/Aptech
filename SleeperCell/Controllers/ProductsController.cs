@@ -66,12 +66,12 @@ namespace SleeperCell.Controllers
             return View(product);
         }
 
-        [HttpDelete]
-        public ActionResult Delete(ProductViewModel model)
-        {
-            _productRepository.Delete(model);
+        //[HttpDelete]
+        //public ActionResult Delete(ProductViewModel model)
+        //{
+        //    _productRepository.Delete(model);
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
     }
 }
