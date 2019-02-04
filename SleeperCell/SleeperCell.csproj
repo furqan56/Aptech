@@ -209,10 +209,13 @@
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProductStockViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\SaleOrderViewModel.cs" />
     <Compile Include="Models\VendorViewModel.cs" />
     <Compile Include="ObjectModel\Category.cs" />
     <Compile Include="ObjectModel\Product.cs" />
+    <Compile Include="ObjectModel\ProductStock.cs" />
     <Compile Include="ObjectModel\SaleOrder.cs" />
     <Compile Include="ObjectModel\SaleOrderDetail.cs" />
     <Compile Include="ObjectModel\Vendor.cs" />
