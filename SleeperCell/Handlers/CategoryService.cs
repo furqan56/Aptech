@@ -3,20 +3,33 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using SleeperCell.Context;
 using SleeperCell.Models;
 using SleeperCell.ObjectModel;
 
 namespace SleeperCell.Handlers
 {
-    public class CategoryRepository
+    public class CategoryService
     {
         private SleeperCellContext _context;
         public static int CategoryId { get; private set; } = 1;
 
-        public CategoryRepository()
+        public CategoryService()
         {
             _context = new SleeperCellContext();
+        }
+
+        public List<SelectListItem> GetSelectList(int selectedId = -1)
+        {
+            return _context.Categories
+                .Select(x => new { x.Id, x.Name }).ToList()
+                .Select(x => new SelectListItem
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString(),
+                    Selected = selectedId == x.Id
+                }).ToList();
         }
         public List<CategoryViewModel> GetAllCategory()
         {
@@ -38,7 +51,7 @@ namespace SleeperCell.Handlers
         {
             var category = TransformToObjectModel(model);
             category.Id = CategoryId++;
-            
+
             _context.Categories.Add(category);
             _context.SaveChanges();
         }
@@ -46,7 +59,7 @@ namespace SleeperCell.Handlers
         public CategoryViewModel FindCategory(int id)
         {
             Category category = Find(id);
-            
+
             var categoryViewModel = TransformToViewModel(category);
 
             return (categoryViewModel);

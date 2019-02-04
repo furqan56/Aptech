@@ -183,6 +183,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Context\Configuration\ProductConfiguration.cs" />
+    <Compile Include="Context\Configuration\SaleOrderDetailConfiguration.cs" />
     <Compile Include="Context\SleeperCellContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
@@ -194,7 +196,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Handlers\CategoryRepository.cs" />
+    <Compile Include="Handlers\CategoryService.cs" />
     <Compile Include="Handlers\ProductRepository.cs" />
     <Compile Include="Handlers\ProductStockRepository.cs" />
     <Compile Include="Handlers\StockRepository.cs" />
@@ -207,11 +209,20 @@
     <Compile Include="Migrations\201901281032086_SaleOrder_Stock_AndRelationCreated.Designer.cs">
       <DependentUpon>201901281032086_SaleOrder_Stock_AndRelationCreated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902041012045_saleOrderDetailProductRelationShipEstablished.cs" />
+    <Compile Include="Migrations\201902041012045_saleOrderDetailProductRelationShipEstablished.Designer.cs">
+      <DependentUpon>201902041012045_saleOrderDetailProductRelationShipEstablished.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902041036168_ProductCategoryRelationShipEstablised.cs" />
+    <Compile Include="Migrations\201902041036168_ProductCategoryRelationShipEstablised.Designer.cs">
+      <DependentUpon>201902041036168_ProductCategoryRelationShipEstablised.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProductSaleViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\StockViewModel.cs" />
     <Compile Include="Models\VendorViewModel.cs" />
@@ -1796,6 +1807,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901281032086_SaleOrder_Stock_AndRelationCreated.resx">
       <DependentUpon>201901281032086_SaleOrder_Stock_AndRelationCreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902041012045_saleOrderDetailProductRelationShipEstablished.resx">
+      <DependentUpon>201902041012045_saleOrderDetailProductRelationShipEstablished.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902041036168_ProductCategoryRelationShipEstablised.resx">
+      <DependentUpon>201902041036168_ProductCategoryRelationShipEstablised.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

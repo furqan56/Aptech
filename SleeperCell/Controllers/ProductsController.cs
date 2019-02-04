@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using SleeperCell.Handlers;
 using SleeperCell.Models;
 
@@ -11,10 +7,12 @@ namespace SleeperCell.Controllers
     public class ProductsController : Controller
     {
         private ProductRepository _productRepository;
+        private CategoryService _categoryService;
 
         // GET: Products
         public ProductsController()
         {
+            _categoryService = new CategoryService();
             _productRepository = new ProductRepository();
         }
         public ActionResult Index()
@@ -22,8 +20,16 @@ namespace SleeperCell.Controllers
             return View(_productRepository.GetAllProducts());
         }
         [HttpGet]
+        public ActionResult Edit(int Id)
+        {
+            var product = _productRepository.FindProduct(Id);
+            ViewBag.CategorySelectList = _categoryService.GetSelectList(product.CategoryId);
+            return View();
+        }
+        [HttpGet]
         public ActionResult Create()
         {
+            ViewBag.CategorySelectList = _categoryService.GetSelectList();
             return View();
         }
         [HttpPost]
