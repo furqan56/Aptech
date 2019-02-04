@@ -17,5 +17,6 @@ namespace SleeperCell.Models
         public int QuantityInHand { get; set; }
         [DisplayName("Category Name")]
         public string CategoryName { get; set; }    
+        public int CategoryId { get; set; }    
     }
 }
