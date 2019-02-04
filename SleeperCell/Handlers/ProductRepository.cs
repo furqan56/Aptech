@@ -1,41 +1,85 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using SleeperCell.Context;
 using SleeperCell.Models;
+using SleeperCell.ObjectModel;
 
 namespace SleeperCell.Handlers
 {
     public class ProductRepository
     {
-       
-        public static List<ProductViewModel> ProductsStore { get; private set; } = new List<ProductViewModel>();
-        public static int ProductId { get; private set; } = 1;
+        private SleeperCellContext _dbContext;
+
+        public ProductRepository()
+        {
+            _dbContext = new SleeperCellContext();
+        }
+     
         public List<ProductViewModel> GetAllProducts()
         {
-            return ProductsStore;
+            return _dbContext.Products.Select(x => new ProductViewModel
+            {
+                Barcode = x.Barcode,
+                CategoryName = x.Category.Name,
+                Id = x.Id,
+                QuantityInHand = x.Stock.Sum(t => t.QuantityIn - t.QuantityOut),
+                Name = x.Name,
+                Description = x.Description,
+                UnitCost = x.Stock.Average(a => a.UnitCost),
+                UnitPrice = x.UnitPrice
+            }).ToList();
         }
 
         public void AddProduct(ProductViewModel model)
         {
-            model.Id = ProductId++;
-            ProductsStore.Add(model);
+            var product= new Product
+            {
+                Barcode = model.Barcode,
+                Category = new Category() { Id = model.Id },
+                Name = model.Name,
+                Description = model.Description,
+                UnitPrice = model.UnitPrice
+            };
+            _dbContext.Products.Add(product);
+
+            _dbContext.SaveChanges();
         }
 
-        public ProductViewModel FindProduct(int Id)
+        public ProductViewModel FindProduct(int id)
         {
-            ProductViewModel Pr = ProductsStore.Where(p => p.Id == Id).FirstOrDefault();
-            return (Pr);
+            var product = _dbContext.Products.Find(id);
+            if (product == null)
+                return null;
+            return new ProductViewModel
+            {
+                Barcode = product.Barcode,
+                CategoryId = product.Category.Id,
+                Id = product.Id,
+                QuantityInHand = product.Stock.Sum(t => t.QuantityIn - t.QuantityOut),
+                Name = product.Name,
+                Description = product.Description,
+                UnitCost = product.Stock.Average(a => a.UnitCost),
+                UnitPrice = product.UnitPrice
+            };
         }
 
         public void Update(ProductViewModel model)
         {
-            ProductsStore.RemoveAll(p => p.Id == model.Id);
-            ProductsStore.Add(model);
+            var existingProduct = _dbContext.Products.Find(model.Id);
+            if (existingProduct == null) return;
+            existingProduct.Barcode = model.Barcode;
+            existingProduct.Category = new Category() {Id = model.Id};
+            existingProduct.Name = model.Name;
+            existingProduct.Description = model.Description;
+            existingProduct.UnitPrice = model.UnitPrice;
+            _dbContext.Entry(existingProduct).State = System.Data.Entity.EntityState.Modified;
+            _dbContext.SaveChanges();
         }
         public void Delete(int id)
         {
-            ProductsStore.RemoveAll(p => p.Id == id);
+            var product = _dbContext.Products.Find(id);
+            _dbContext.Products.Remove(product);
+            _dbContext.SaveChanges();
         }
     }
 }

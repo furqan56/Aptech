@@ -195,7 +195,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Handlers\CategoryRepository.cs" />
+    <Compile Include="Handlers\CategoryService.cs" />
     <Compile Include="Handlers\ProductRepository.cs" />
     <Compile Include="Handlers\VendorRepositry.cs" />
     <Compile Include="Migrations\201901251108296_Init.cs" />
