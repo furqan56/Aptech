@@ -22,9 +22,9 @@ namespace SleeperCell.Handlers
             {
                 Barcode = x.Barcode,
                 CategoryName = x.Category.Name,
-                Id = x.Id,
-                QuantityInHand = x.Stock.Sum(t => t.QuantityIn - t.QuantityOut),
-                Name = x.Name,
+                ID = x.Id,
+                QuantityinHand = x.Stock.Sum(t => t.QuantityIn - t.QuantityOut),
+                ProductName = x.Name,
                 Description = x.Description,
                 UnitCost = x.Stock.Average(a => a.UnitCost),
                 UnitPrice = x.UnitPrice
@@ -36,8 +36,8 @@ namespace SleeperCell.Handlers
             var product= new Product
             {
                 Barcode = model.Barcode,
-                Category = new Category() { Id = model.Id },
-                Name = model.Name,
+                Category = new Category() { Id = model.ID },
+                Name = model.ProductName,
                 Description = model.Description,
                 UnitPrice = model.UnitPrice
             };
@@ -54,10 +54,10 @@ namespace SleeperCell.Handlers
             return new ProductViewModel
             {
                 Barcode = product.Barcode,
-                CategoryId = product.Category.Id,
-                Id = product.Id,
-                QuantityInHand = product.Stock.Sum(t => t.QuantityIn - t.QuantityOut),
-                Name = product.Name,
+                 = product.Category.Id,
+                ID = product.Id,
+                QuantityinHand = product.Stock.Sum(t => t.QuantityIn - t.QuantityOut),
+                ProductName = product.Name,
                 Description = product.Description,
                 UnitCost = product.Stock.Average(a => a.UnitCost),
                 UnitPrice = product.UnitPrice

@@ -21,21 +21,21 @@ namespace SleeperCell.Models
 
         [Required]
         [DataType(DataType.MultilineText)]
-        public string Description { get; set; } 
+        public string Description { get; set; }
 
-        //[Required]
-        //[Display(Name = "Unit Cost")]
-        //[Range(0,9999.99)]
-        //public double UnitCost { get; set; }
+        [Required]
+        [Display(Name = "Unit Cost")]
+        [Range(0, 9999.99)]
+        public double UnitCost { get; set; }
 
         [Required]
         [Display(Name = "Unit Price")]
         [Range(0,9999.99)]
         public double UnitPrice { get; set; }
 
-        //[Required]
-        //[Display(Name = "Qty In Hand")]
-        //public int QuantityinHand { get; set; }
+        [Required]
+        [Display(Name = "Qty In Hand")]
+        public int QuantityinHand { get; set; }
 
         [Required]
         [Display(Name = "Category Name")]
