@@ -12,17 +12,16 @@ namespace SleeperCell.Handlers
 {
     public class CategoryService
     {
-        private SleeperCellContext _context;
-        public static int CategoryId { get; private set; } = 1;
-
+        private SleeperCellContext _dbcontext;
+        
         public CategoryService()
         {
-            _context = new SleeperCellContext();
+            _dbcontext = new SleeperCellContext();
         }
 
         public List<SelectListItem> GetSelectList(int selectedId = -1)
         {
-            return _context.Categories
+            return _dbcontext.Categories
                 .Select(x => new { x.Id, x.Name }).ToList()
                 .Select(x => new SelectListItem
                 {
@@ -33,77 +32,80 @@ namespace SleeperCell.Handlers
         }
         public List<CategoryViewModel> GetAllCategory()
         {
-            var categories = _context.Categories.ToList();
-
-            var categoryViewModel = new List<CategoryViewModel>();
-
-            foreach (var category in categories)
+            return _dbcontext.Categories.Select(x => new CategoryViewModel
             {
-                var viewModel = TransformToViewModel(category);
-
-                categoryViewModel.Add(viewModel);
-            }
-
-            return categoryViewModel;
+                    Id = x.Id,
+                    Name = x.Name,
+                    Description = x.Description,
+                    
+            }).ToList();
         }
 
         public void AddCategory(CategoryViewModel model)
         {
-            var category = TransformToObjectModel(model);
-            category.Id = CategoryId++;
+            var category = new Category
+            {
+                Name = model.Name,
+                Description = model.Description,
+                Products =  new List<Product>() 
+            };
 
-            _context.Categories.Add(category);
-            _context.SaveChanges();
+            _dbcontext.Categories.Add(category);
+            _dbcontext.SaveChanges();
         }
 
         public CategoryViewModel FindCategory(int id)
         {
-            Category category = Find(id);
-
-            var categoryViewModel = TransformToViewModel(category);
-
-            return (categoryViewModel);
+            var category = _dbcontext.Categories.Find(id);
+            if (category == null)
+                return null;
+            return new CategoryViewModel
+            {
+                Id = category.Id,
+                Name = category.Name,
+                Description = category.Description
+            };
         }
 
-        private Category Find(int id)
-        {
-            return _context.Set<Category>().FirstOrDefault(p => p.Id == id);
-        }
+        //private Category Find(int id)
+        //{
+        //    return _context.Set<Category>().FirstOrDefault(p => p.Id == id);
+        //}
 
         public void Update(CategoryViewModel model)
         {
-            var category = TransformToObjectModel(model);
-
-            var existing = Find(category.Id);
-            _context.Entry(existing).CurrentValues.SetValues(category);
-            _context.Entry(existing).State = EntityState.Modified;
-            _context.SaveChanges();
+            var existingCategory = _dbcontext.Categories.Find(model.Id);
+            if (existingCategory == null) return;
+            existingCategory.Name = model.Name;
+            existingCategory.Description = model.Description;
+            _dbcontext.Entry(existingCategory).State = EntityState.Modified;
+            _dbcontext.SaveChanges();
         }
         public void Delete(int id)
         {
-            var category = Find(id);
-            _context.Entry(category).State = EntityState.Deleted;
-            _context.SaveChanges();
+            var category = _dbcontext.Categories.Find(id);
+            _dbcontext.Categories.Remove(category);
+            _dbcontext.SaveChanges();
         }
 
-        private Category TransformToObjectModel(CategoryViewModel viewModel)
-        {
-            return new Category
-            {
-                Id = viewModel.Id,
-                Name = viewModel.Name,
-                Description = viewModel.Description
-            };
-        }
+        //private Category TransformToObjectModel(CategoryViewModel viewModel)
+        //{
+        //    return new Category
+        //    {
+        //        Id = viewModel.Id,
+        //        Name = viewModel.Name,
+        //        Description = viewModel.Description
+        //    };
+        //}
 
-        private CategoryViewModel TransformToViewModel(Category model)
-        {
-            return new CategoryViewModel
-            {
-                Id = model.Id,
-                Name = model.Name,
-                Description = model.Description
-            };
-        }
+        //private CategoryViewModel TransformToViewModel(Category model)
+        //{
+        //    return new CategoryViewModel
+        //    {
+        //        Id = model.Id,
+        //        Name = model.Name,
+        //        Description = model.Description
+        //    };
+        //}
     }
 }

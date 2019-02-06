@@ -40,6 +40,6 @@ namespace SleeperCell.Models
         [Required]
         [Display(Name = "Category Name")]
         public string CategoryName { get; set; }
-
+        public int CategoryId { get; set; }
     }
 }

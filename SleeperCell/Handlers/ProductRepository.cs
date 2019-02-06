@@ -54,7 +54,7 @@ namespace SleeperCell.Handlers
             return new ProductViewModel
             {
                 Barcode = product.Barcode,
-                 = product.Category.Id,
+                CategoryId = product.Category.Id,
                 ID = product.Id,
                 QuantityinHand = product.Stock.Sum(t => t.QuantityIn - t.QuantityOut),
                 ProductName = product.Name,
@@ -66,11 +66,11 @@ namespace SleeperCell.Handlers
 
         public void Update(ProductViewModel model)
         {
-            var existingProduct = _dbContext.Products.Find(model.Id);
+            var existingProduct = _dbContext.Products.Find(model.ID);
             if (existingProduct == null) return;
             existingProduct.Barcode = model.Barcode;
-            existingProduct.Category = new Category() {Id = model.Id};
-            existingProduct.Name = model.Name;
+            existingProduct.Category = new Category() {Id = model.ID};
+            existingProduct.Name = model.ProductName;
             existingProduct.Description = model.Description;
             existingProduct.UnitPrice = model.UnitPrice;
             _dbContext.Entry(existingProduct).State = System.Data.Entity.EntityState.Modified;

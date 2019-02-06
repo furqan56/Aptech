@@ -26,7 +26,7 @@ namespace SleeperCell.Controllers
         // GET: Vendor/Details/5
         public ActionResult Details(int id)
         {
-            return View(_VendorRepositry.Find(id));
+            return View(_VendorRepositry.FindVendor(id));
         }
 
         // GET: Vendor/Create
@@ -54,7 +54,7 @@ namespace SleeperCell.Controllers
         // GET: Vendor/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(_VendorRepositry.Find(id));
+            return View(_VendorRepositry.FindVendor(id));
         }
 
         // POST: Vendor/Edit/5
@@ -76,7 +76,7 @@ namespace SleeperCell.Controllers
         // GET: Vendor/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(_VendorRepositry.Find(id));
+            return View(_VendorRepositry.FindVendor(id));
         }
 
         // POST: Vendor/Delete/5

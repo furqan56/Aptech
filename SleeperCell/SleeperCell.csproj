@@ -200,7 +200,7 @@
     <Compile Include="Handlers\ProductRepository.cs" />
     <Compile Include="Handlers\ProductStockRepository.cs" />
     <Compile Include="Handlers\StockRepository.cs" />
-    <Compile Include="Handlers\VendorRepositry.cs" />
+    <Compile Include="Handlers\VendorService.cs" />
     <Compile Include="Migrations\201901251108296_Init.cs" />
     <Compile Include="Migrations\201901251108296_Init.Designer.cs">
       <DependentUpon>201901251108296_Init.cs</DependentUpon>

@@ -48,7 +48,7 @@ namespace SleeperCell.Controllers
         [HttpGet]
         public ActionResult Update(int id)
         {
-            var product = _productRepository.FindProductDetail(id);
+            var product = _productRepository.FindProduct(id);
             return View(product);
 
         }
@@ -68,7 +68,7 @@ namespace SleeperCell.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            var product = _productRepository.FindProductDetail(id);
+            var product = _productRepository.FindProduct(id);
             return View(product);
         }
 
