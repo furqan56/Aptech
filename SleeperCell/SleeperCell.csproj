@@ -187,6 +187,7 @@
     <Compile Include="Context\Configuration\SaleOrderDetailConfiguration.cs" />
     <Compile Include="Context\SleeperCellContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CalenderControler.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
