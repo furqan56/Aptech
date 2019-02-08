@@ -34,7 +34,9 @@ namespace SleeperCell
                       "~/Content/adminLTE/css/AdminLTE.min.css",
                       "~/Content/font-awesome/css/font-awesome.min.css",
                       "~/Content/Ionicons/css/ionicons.min.css",
-                      "~/Content/adminLTE/css/skins/skin-blue.min.css"
+                      "~/Content/adminLTE/css/skins/skin-blue.min.css",
+                      "~/Content/adminLTE/css/skins/_all-skins.min.css",
+                      "~/Content/dataTable/css/dataTables.bootstrap.min.css"
                       ));
         }
     }

@@ -275,6 +275,11 @@
     <Content Include="Content\adminLTE\css\skins\skin-yellow.min.css" />
     <Content Include="Content\adminLTE\css\skins\_all-skins.css" />
     <Content Include="Content\adminLTE\css\skins\_all-skins.min.css" />
+    <Content Include="Content\dataTable\css\dataTables.bootstrap.css" />
+    <Content Include="Content\dataTable\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\dataTable\js\dataTables.bootstrap.js" />
+    <Content Include="Content\dataTable\js\dataTables.bootstrap.min.js" />
+    <Content Include="Content\dataTable\License.txt" />
     <Content Include="Content\img\avatar.png" />
     <Content Include="Content\img\avatar04.png" />
     <Content Include="Content\img\avatar2.png" />
@@ -1711,6 +1716,9 @@
     <Content Include="Content\Ionicons\scss\_ionicons-variables.scss" />
     <Content Include="Content\adminLTE\css\adminlte.css.map" />
     <Content Include="Content\adminLTE\css\adminlte.min.css.map" />
+    <Content Include="Content\dataTable\.bower.json" />
+    <Content Include="Content\dataTable\bower.json" />
+    <Content Include="Content\dataTable\Readme.md" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
