@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using SleeperCell.Context;
 using SleeperCell.Models;
@@ -14,9 +15,10 @@ namespace SleeperCell.Handlers
         {
             _dbContext = new SleeperCellContext();
         }
-     
+
         public List<ProductViewModel> GetAllProducts()
         {
+
             return _dbContext.Products.Select(x => new ProductViewModel
             {
                 Barcode = x.Barcode,
@@ -25,17 +27,16 @@ namespace SleeperCell.Handlers
                 QuantityInHand = x.Stock.Sum(t => t.QuantityIn - t.QuantityOut),
                 Name = x.Name,
                 Description = x.Description,
-                UnitCost = x.Stock.Average(a => a.UnitCost),
                 UnitPrice = x.UnitPrice
             }).ToList();
         }
 
         public void AddProduct(ProductViewModel model)
         {
-            var product= new Product
+            var product = new Product
             {
                 Barcode = model.Barcode,
-                Category = new Category() { Id = model.Id },
+                CategoryId = model.CategoryId,
                 Name = model.Name,
                 Description = model.Description,
                 UnitPrice = model.UnitPrice
@@ -53,12 +54,12 @@ namespace SleeperCell.Handlers
             return new ProductViewModel
             {
                 Barcode = product.Barcode,
-                CategoryId = product.Category.Id,
+                CategoryName = product.Category.Name,
                 Id = product.Id,
-                QuantityInHand = product.Stock.Sum(t => t.QuantityIn - t.QuantityOut),
+                QuantityInHand = product.Stock.Any() ? product.Stock.Sum(t => t.QuantityIn - t.QuantityOut) : 0,
                 Name = product.Name,
                 Description = product.Description,
-                UnitCost = product.Stock.Average(a => a.UnitCost),
+                UnitCost = product.Stock.Any() ? product.Stock.Average(a => a.UnitCost) : 0,
                 UnitPrice = product.UnitPrice
             };
         }
@@ -68,7 +69,7 @@ namespace SleeperCell.Handlers
             var existingProduct = _dbContext.Products.Find(model.Id);
             if (existingProduct == null) return;
             existingProduct.Barcode = model.Barcode;
-            existingProduct.Category = new Category() {Id = model.Id};
+            existingProduct.Category = new Category() { Id = model.Id };
             existingProduct.Name = model.Name;
             existingProduct.Description = model.Description;
             existingProduct.UnitPrice = model.UnitPrice;

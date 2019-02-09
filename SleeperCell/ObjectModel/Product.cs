@@ -12,9 +12,9 @@ namespace SleeperCell.ObjectModel
         public string Description { get; set; }
         public double UnitPrice { get; set; }
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
-        public List<ProductStock> Stock { get; set; }
-        public List<SaleOrderDetail> ItemsSold { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual List<ProductStock> Stock { get; set; }
+        public virtual List<SaleOrderDetail> ItemsSold { get; set; }
     }
     
 }
