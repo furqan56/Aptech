@@ -135,7 +135,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer text-center">
-                    <a href="/Products/" class="uppercase">View All Products</a>
+                    <a onclick="loadNext()" class="uppercase">View All Products</a>
                 </div>
                 <!-- /.box-footer -->
             </div>
@@ -145,10 +145,15 @@
 </section>
 @section Scripts{
     <script>
+        var productCurosr = 0;
         $(document).ready(function (event) {
-            getProducts(0,4);
+            getProducts(productCurosr,4);
         });
 
+        function loadNext() {
+            productCurosr += 4;
+            getProducts(productCurosr,4)
+        }
         function getProducts(start, count) {
             $.ajax({
                 type: "GET",
@@ -174,9 +179,9 @@
                     });
                 },
                 error: function (error) {
-            console.log(error);
-        }
-    });
+                    console.log(error);
+                }
+            });
         }
     </script>
 }
