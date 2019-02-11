@@ -18,7 +18,7 @@
                 @Html.DisplayNameFor(model => model.Barcode)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.ProductName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Description)
@@ -30,8 +30,7 @@
                 @Html.DisplayNameFor(model => model.QuantityInHand)
             </th>
 
-            <th></th>
-        </tr>
+         </tr>
 
         @foreach (var item in Model) {
         <tr>
@@ -42,7 +41,7 @@
                 @Html.DisplayFor(modelItem => item.Barcode)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.ProductName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
@@ -55,9 +54,9 @@
             </td>
 
             <td>
-                @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-                @Html.ActionLink("Details", "Details", new {id = item.Id}) |
-                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                @Html.ActionLink("Edit", "Edit", new {id = item.ID}) |
+                @Html.ActionLink("Details", "Details", new {id = item.ID}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.ID})
             </td>
         </tr>
         }

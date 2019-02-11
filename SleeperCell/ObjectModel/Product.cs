@@ -26,9 +26,12 @@ namespace SleeperCell.ObjectModel
         public int QuantityIn { get; set; }
         public int QuantityOut { get; set; }
         public double UnitCost { get; set; }
-        public Product Product { get; set; }
-        public Vendor Vendor { get; set; }
+        public virtual Product Product { get; set; }
+        public int ProductId { get; set; }
+        public int VednorId { get; set; }
+        public virtual Vendor Vendor{ get; set; }
         public DateTime CreationDate { get; set; }
+        
     }
     
 }

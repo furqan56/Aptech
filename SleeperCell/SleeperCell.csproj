@@ -191,14 +191,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
-    <Compile Include="Controllers\StockController.cs" />
+    <Compile Include="Controllers\ProductStockController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Handlers\CategoryService.cs" />
-    <Compile Include="Handlers\ProductRepository.cs" />
-    <Compile Include="Handlers\ProductStockRepository.cs" />
+    <Compile Include="Handlers\ProductService.cs" />
+    <Compile Include="Handlers\ProductStockService.cs" />
     <Compile Include="Handlers\StockRepository.cs" />
     <Compile Include="Handlers\VendorService.cs" />
     <Compile Include="Migrations\201901251108296_Init.cs" />
@@ -222,7 +222,7 @@
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\ProductSaleViewModel.cs" />
+    <Compile Include="Models\ProductStockViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\StockViewModel.cs" />
     <Compile Include="Models\VendorViewModel.cs" />
@@ -277,8 +277,8 @@
     <Content Include="Content\adminLTE\css\skins\_all-skins.min.css" />
     <Content Include="Content\dataTable\css\dataTables.bootstrap.css" />
     <Content Include="Content\dataTable\css\dataTables.bootstrap.min.css" />
-    <Content Include="Content\dataTable\js\dataTables.bootstrap.js" />
-    <Content Include="Content\dataTable\js\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\DataTable-bs-JS\dataTables.bootstrap.js" />
+    <Content Include="Scripts\DataTable-bs-JS\dataTables.bootstrap.min.js" />
     <Content Include="Content\dataTable\License.txt" />
     <Content Include="Content\img\avatar.png" />
     <Content Include="Content\img\avatar04.png" />
@@ -1734,6 +1734,8 @@
     <Content Include="Scripts\AdminLTE-JS\demo.js" />
     <Content Include="Scripts\AdminLTE-JS\pages\dashboard.js" />
     <Content Include="Scripts\AdminLTE-JS\pages\dashboard2.js" />
+    <Content Include="Scripts\DataTable-JS\jquery.dataTables.js" />
+    <Content Include="Scripts\DataTable-JS\jquery.dataTables.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

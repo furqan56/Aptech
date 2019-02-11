@@ -4,78 +4,82 @@
     ViewBag.Title = "Vendor List";
 }
 @Styles.Render("~/Content/css")
-
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            Vendor
-            @*<small>advanced tables</small>*@
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Tables</a></li>
-            <li class="active">Data tables</li>
-        </ol>
-    </section>
-    <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Vendor Table</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <table id="example2" class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Name)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Phone)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Address)
-                                    </th>
-                                    <th></th>
-                                </tr>
-                                <p>
-                                    @Html.ActionLink("Create New", "Create")
-                                </p>
-
-                                @foreach (var item in Model)
-                                {
+@Styles.Render("~/Content/dataTable/css")
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Vendor
+                @*<small>advanced tables</small>*@
+            </h1>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Vendor Table</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Name)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Phone)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Address)
-                                        </td>
-                                        <td>
-                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                                        </td>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Name)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Phone)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Address)
+                                        </th>
+                                        <th></th>
                                     </tr>
-                                 }
+                                    <p>
+                                        @Html.ActionLink("Create New", "Create")
+                                    </p>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Phone)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Address)
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                            </td>
+                                        </tr>
+                                    }
                             </table>
 
                         </div>
-                        </div>
-                        <!-- /.box-body -->
                     </div>
-                    <!-- /.box -->
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
             </div>
-            </section>
-                    @*<table class="table">
+        </section>
+        @*<table class="table">
                 <tr>
                     <th>
                         @Html.DisplayNameFor(model => model.Name)
@@ -110,4 +114,25 @@
                 }
 
             </table>*@
-</div>
+    </div>
+
+    @Scripts.Render("~/bundles/DataTable-JS")
+    @Scripts.Render("~/bundles/DataTable-bs-JS")
+    @Scripts.Render("~/bundles/adminLTE")
+    <script>
+        $(function () {
+            $('#example1').DataTable()
+            'paging'      : true,
+                'lengthChange': false,
+                    'searching'   : false,
+                        'ordering'    : true,
+                            'info'        : true,
+                                'autoWidth'   : false
+        })
+                      })</script>
+
+
+    @*@RenderSection("scripts", required: false)*@
+</body>
+
+</html>

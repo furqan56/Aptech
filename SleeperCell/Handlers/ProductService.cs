@@ -1,20 +1,33 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Web.Mvc;
 using SleeperCell.Context;
 using SleeperCell.Models;
 using SleeperCell.ObjectModel;
 
 namespace SleeperCell.Handlers
 {
-    public class ProductRepository
+    public class ProductService
     {
         private SleeperCellContext _dbContext;
 
-        public ProductRepository()
+        public ProductService()
         {
             _dbContext = new SleeperCellContext();
         }
+
+        public List<SelectListItem> GetSelectList(int selectedId = -1)
+        {
+            return _dbContext.Products
+                .Select(x => new { x.Id, x.Name }).ToList()
+                .Select(x => new SelectListItem
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString(),
+                    Selected = selectedId == x.Id
+                }).ToList();
+                }
 
         public List<ProductViewModel> GetAllProducts()
         {
@@ -24,7 +37,7 @@ namespace SleeperCell.Handlers
                 Barcode = x.Barcode,
                 CategoryName = x.Category.Name,
                 ID = x.Id,
-                QuantityinHand = x.Stock.Sum(t => t.QuantityIn - t.QuantityOut),
+                QuantityInHand = x.Stock.Sum(t => t.QuantityIn - t.QuantityOut),
                 ProductName = x.Name,
                 Description = x.Description,
                 UnitPrice = x.UnitPrice
@@ -37,7 +50,7 @@ namespace SleeperCell.Handlers
             {
                 Barcode = model.Barcode,
                 CategoryId = model.CategoryId,
-                Name = model.Name,
+                Name = model.ProductName,
                 Description = model.Description,
                 UnitPrice = model.UnitPrice
             };
@@ -55,9 +68,9 @@ namespace SleeperCell.Handlers
             {
                 Barcode = product.Barcode,
                 CategoryName = product.Category.Name,
-                Id = product.Id,
+                ID = product.Id,
                 QuantityInHand = product.Stock.Any() ? product.Stock.Sum(t => t.QuantityIn - t.QuantityOut) : 0,
-                Name = product.Name,
+                ProductName = product.Name,
                 Description = product.Description,
                 UnitCost = product.Stock.Any() ? product.Stock.Average(a => a.UnitCost) : 0,
                 UnitPrice = product.UnitPrice
@@ -69,8 +82,8 @@ namespace SleeperCell.Handlers
             var existingProduct = _dbContext.Products.Find(model.ID);
             if (existingProduct == null) return;
             existingProduct.Barcode = model.Barcode;
-            existingProduct.Category = new Category() { Id = model.Id };
-            existingProduct.Name = model.Name;
+            existingProduct.Category = new Category() { Id = model.ID };
+            existingProduct.Name = model.ProductName;
             existingProduct.Description = model.Description;
             existingProduct.UnitPrice = model.UnitPrice;
             _dbContext.Entry(existingProduct).State = System.Data.Entity.EntityState.Modified;

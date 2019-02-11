@@ -6,14 +6,14 @@ namespace SleeperCell.Controllers
 {
     public class ProductsController : Controller
     {
-        private ProductRepository _productRepository;
+        private ProductService _productRepository;
         private CategoryService _categoryService;
 
         // GET: Products
         public ProductsController()
         {
             _categoryService = new CategoryService();
-            _productRepository = new ProductRepository();
+            _productRepository = new ProductService();
         }
         public ActionResult Index()
         {

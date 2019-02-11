@@ -6,16 +6,29 @@ using System.Web;
 using SleeperCell.Models;
 using SleeperCell.ObjectModel;
 using SleeperCell.Context;
+using System.Web.Mvc;
 
 namespace SleeperCell.Handlers
 {
-    public class VendorRepository
+    public class VendorService
     {
         private SleeperCellContext _dbcontext;
         
-        public VendorRepository()
+        public VendorService()
         {
             _dbcontext = new SleeperCellContext();
+        }
+
+        public List<SelectListItem> GetSelectList(int selectedId = -1)
+        {
+            return _dbcontext.Vendors
+                .Select(x => new { x.Id, x.Name })
+                .Select(x => new SelectListItem
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString(),
+                    Selected = selectedId == x.Id
+                }).ToList();
         }
 
         public List<VendorViewModel> GetAllVendors()

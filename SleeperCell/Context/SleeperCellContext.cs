@@ -28,5 +28,6 @@ namespace SleeperCell.Context
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<SaleOrder> Sales { get; set; }
+        public DbSet<ProductStock> ProductStocks { get; set; }
     }
 }

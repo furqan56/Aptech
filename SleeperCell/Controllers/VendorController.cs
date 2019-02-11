@@ -10,11 +10,11 @@ namespace SleeperCell.Controllers
 {
     public class VendorController : Controller
     {
-        private VendorRepository _VendorRepositry;
+        private VendorService _VendorRepositry;
 
         public VendorController()
         {
-            _VendorRepositry = new VendorRepository();
+            _VendorRepositry = new VendorService();
         }
 
         // GET: Vendor
