@@ -26,43 +26,43 @@ namespace SleeperCell.Handlers
                 QuantityIn = x.QuantityIn,
                 QuantityOut = x.QuantityOut,
                 UnitCost = x.UnitCost,
-                ProductName = x.Product.Name,
-                VendorName = x.Vendor.Name,
+                Product = x.Product.Name,
+                Vendor = x.Vendor.Name,
                 CreationDate = x.CreationDate
             }).ToList();
         }
 
-        public void AddProductStock(ProductStockViewModel model)
-        {
-            var stock = new ProductStock
-            {
-                QuantityIn = model.QuantityIn,
-                QuantityOut = model.QuantityOut,
-                UnitCost = model.UnitCost,
-                ProductName = model.ProductName,
-                VednorName = model.VendorName,
-                CreationDate = model.CreationDate
-            };
-            _dbContext.ProductStocks.Add(stock);
-            _dbContext.SaveChanges();
-        }
+        //public void AddProductStock(ProductStockViewModel model)
+        //{
+        //    var stock = new ProductStock
+        //    {
+        //        QuantityIn = model.QuantityIn,
+        //        QuantityOut = model.QuantityOut,
+        //        UnitCost = model.UnitCost,
+        //        Product = model.Product,
+        //        Vendor = model.VendorName,
+        //        CreationDate = model.CreationDate
+        //    };
+        //    _dbContext.ProductStocks.Add(stock);
+        //    _dbContext.SaveChanges();
+        //}
 
-        public ProductStockViewModel FindProductStock(int id)
-        {
-            var stock = _dbContext.ProductStocks.Find(id);
-            if (stock == null)
-                return null;
-            return new ProductStockViewModel
-            {
-                Id = stock.Id,
-                QuantityIn = stock.QuantityIn,
-                QuantityOut = stock.QuantityOut,
-                UnitCost = stock.UnitCost,
-                ProductName = stock.Product.Name,
-                VendorName = stock.Product.Name,
-                CreationDate = stock.CreationDate
-            };
-        }
+        //public ProductStockViewModel FindProductStock(int id)
+        //{
+        //    var stock = _dbContext.ProductStocks.Find(id);
+        //    if (stock == null)
+        //        return null;
+        //    return new ProductStockViewModel
+        //    {
+        //        Id = stock.Id,
+        //        QuantityIn = stock.QuantityIn,
+        //        QuantityOut = stock.QuantityOut,
+        //        UnitCost = stock.UnitCost,
+        //        ProductName = stock.Product.Name,
+        //        VendorName = stock.Product.Name,
+        //        CreationDate = stock.CreationDate
+        //    };
+        //}
 
         //public void Update(ProductStockViewModel model)
         //{

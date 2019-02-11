@@ -13,10 +13,10 @@ namespace SleeperCell.Models
         public int QuantityOut { get; set; }
         public double UnitCost { get; set; }
 
-        public string ProductName { get; set; }
+        public string Product { get; set; }
         public int ProductId { get; set; }
         public int VendorId { get; set; }
-        public string VendorName { get; set; }
+        public string Vendor { get; set; }
         public DateTime CreationDate { get; set; }
     }
 }

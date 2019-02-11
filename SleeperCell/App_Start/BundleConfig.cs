@@ -42,6 +42,7 @@ namespace SleeperCell
                 "~/Content/Ionicons/css/ionicons.min.css"
 
                 ));
+            bundles.Add(new StyleBundle("~/Content/DataTable/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/adminLTE/css/AdminLTE.min.css",
                       "~/Content/font-awesome/css/font-awesome.min.css",

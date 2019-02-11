@@ -25,13 +25,13 @@ namespace SleeperCell.Controllers
             return View(_stockService.GetPoductStock());
         }
 
-        public ActionResult Edit(int id)
-        {
-            var productStock = _stockService.FindProductStock(id);
-            ViewBag.VendorSelectList = _vendorService.GetSelectList(productStock.VendorId);
-            ViewBag.ProductSelectList = _productService.GetSelectList(productStock.ProductId);
-            return View();
-        }
+        //public ActionResult Edit(int id)
+        //{
+        //    var productStock = _stockService.FindProductStock(id);
+        //    ViewBag.VendorSelectList = _vendorService.GetSelectList(productStock.VendorId);
+        //    ViewBag.ProductSelectList = _productService.GetSelectList(productStock.ProductId);
+        //    return View();
+        //}
         [HttpGet]
         public ActionResult Create()
         {
@@ -40,23 +40,23 @@ namespace SleeperCell.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Create(ProductStockViewModel model)
-        {
-            if (ModelState.IsValid)
-            { 
-                _stockService.AddProductStock(model);
-                return RedirectToAction("Index");
-        }
-            return View(model);
-        }
+        //[HttpPost]
+        //public ActionResult Create(ProductStockViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    { 
+        //        _stockService.AddProductStock(model);
+        //        return RedirectToAction("Index");
+        //}
+        //    return View(model);
+        //}
 
-        [HttpGet]
-        public ActionResult Update(int id)
-        {
-            var Stock = _stockService.FindProductStock(id);
-            return View(Stock);
-        }
+        //[HttpGet]
+        //public ActionResult Update(int id)
+        //{
+        //    var Stock = _stockService.FindProductStock(id);
+        //    return View(Stock);
+        //}
 
         //[HttpPost]
         //public ActionResult Update(ProductStockViewModel model)
@@ -69,12 +69,12 @@ namespace SleeperCell.Controllers
         //    return View(model);
         //}
 
-        [HttpGet]
-        public ActionResult Delete(int id)
-        {
-            var productStock = _stockService.FindProductStock(id);
-            return View(productStock);
-        }
+        //[HttpGet]
+        //public ActionResult Delete(int id)
+        //{
+        //    var productStock = _stockService.FindProductStock(id);
+        //    return View(productStock);
+        //}
 
         //[HttpDelete]
         //public ActionResult Delete(ProductStockViewModel model)
