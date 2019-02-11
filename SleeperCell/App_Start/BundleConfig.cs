@@ -35,6 +35,13 @@ namespace SleeperCell
 
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                "~/Content/bootstrap.css",
+                "~/Content/adminLTE/css/AdminLTE.min.css",
+                "~/Content/adminLTE/css/skins/skin-red.min.css",
+                "~/Content/font-awesome/css/font-awesome.min.css",
+                "~/Content/Ionicons/css/ionicons.min.css"
+
+                ));
                       "~/Content/bootstrap.css",
                       "~/Content/adminLTE/css/AdminLTE.min.css",
                       "~/Content/font-awesome/css/font-awesome.min.css",

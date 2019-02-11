@@ -190,6 +190,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductInfoController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProductStockController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
@@ -1796,6 +1797,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ProductInfo\" />
     <Folder Include="Views\SaleOrder\" />
   </ItemGroup>
   <ItemGroup>
