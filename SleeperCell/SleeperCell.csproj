@@ -227,9 +227,10 @@
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProductSaleViewModel.cs" />
     <Compile Include="Models\ProductStockViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
-    <Compile Include="Models\StockViewModel.cs" />
+    <Compile Include="Models\SaleOrderViewModel.cs" />
     <Compile Include="Models\VendorViewModel.cs" />
     <Compile Include="ObjectModel\Category.cs" />
     <Compile Include="ObjectModel\Product.cs" />

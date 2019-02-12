@@ -58,11 +58,40 @@
         <!-- /.box-body -->
 
         <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" >Submit</button>
         </div>
     }
 </div>
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+@section Scripts{
+    <script>
+        function submitData() {
 
+            var barcode = $("#Barcode").val();
+            var categoryId = $("#CategoryId").val();
+            var name = $("#Name").val();
+            var unitPrice = $("#UnitPrice").val();
+
+            $.ajax({
+                type: "POST",
+                method: 'POST',
+                processData:false,
+                url: "/product/info/create",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    Barcode: barcode,
+                    CategoryId: categoryId,
+                    Name: name
+                }),
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+    </script>
+}
