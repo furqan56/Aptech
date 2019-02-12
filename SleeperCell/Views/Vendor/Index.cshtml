@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Vendor List";
 }
-@Styles.Render("~/Content/css")
+@*@Styles.Render("~/Content/css")*@
 @Styles.Render("~/Content/DataTable/css")
 <!DOCTYPE html>
 <html>
@@ -122,17 +122,17 @@
     <script>
         $(function () {
             $('#example1').DataTable()
-            'paging'      : true,
-                'lengthChange': false,
-                    'searching'   : false,
-                        'ordering'    : true,
-                            'info'        : true,
-                                'autoWidth'   : false
+            'paging'; true,
+                'lengthChange'; false,
+                'searching'; false,
+                'ordering'; true,
+                'info'; true,
+                    'autoWidth'; false
         })
-                      })</script>
+     </script>
 
 
-    @*@RenderSection("scripts", required: false)*@
+  @*  @RenderSection("scripts", required: false)*@
 </body>
 
 </html>

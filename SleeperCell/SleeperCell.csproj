@@ -218,6 +218,10 @@
     <Compile Include="Migrations\201902041036168_ProductCategoryRelationShipEstablised.Designer.cs">
       <DependentUpon>201902041036168_ProductCategoryRelationShipEstablised.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902110950280_ProductStock .cs" />
+    <Compile Include="Migrations\201902110950280_ProductStock .Designer.cs">
+      <DependentUpon>201902110950280_ProductStock .cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
@@ -229,6 +233,7 @@
     <Compile Include="Models\VendorViewModel.cs" />
     <Compile Include="ObjectModel\Category.cs" />
     <Compile Include="ObjectModel\Product.cs" />
+    <Compile Include="ObjectModel\ProductStock.cs" />
     <Compile Include="ObjectModel\SaleOrder.cs" />
     <Compile Include="ObjectModel\SaleOrderDetail.cs" />
     <Compile Include="ObjectModel\Vendor.cs" />
@@ -1780,7 +1785,6 @@
     <Content Include="Views\Products\Create.cshtml" />
     <Content Include="Views\Products\Update.cshtml" />
     <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Stock\Create.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
@@ -1791,9 +1795,7 @@
     <Content Include="Views\Vendor\Create.cshtml" />
     <Content Include="Views\Vendor\Edit.cshtml" />
     <Content Include="Views\Vendor\Delete.cshtml" />
-    <Content Include="Views\Stock\Index.cshtml" />
-    <Content Include="Views\Stock\Update.cshtml" />
-    <Content Include="Views\Stock\Delete.cshtml" />
+    <Content Include="Views\ProductStock\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1825,6 +1827,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902041036168_ProductCategoryRelationShipEstablised.resx">
       <DependentUpon>201902041036168_ProductCategoryRelationShipEstablised.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902110950280_ProductStock .resx">
+      <DependentUpon>201902110950280_ProductStock .cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

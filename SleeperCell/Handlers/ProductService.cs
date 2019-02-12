@@ -27,7 +27,12 @@ namespace SleeperCell.Handlers
                     Value = x.Id.ToString(),
                     Selected = selectedId == x.Id
                 }).ToList();
-                }
+         }
+
+        public List<Product> GetSelectList(int id, string Name)
+        {
+           return _dbContext.Products.Where(p => p.Id == id).ToList();
+        }
 
         public List<ProductViewModel> GetAllProducts()
         {
@@ -37,7 +42,6 @@ namespace SleeperCell.Handlers
                 Barcode = x.Barcode,
                 CategoryName = x.Category.Name,
                 ID = x.Id,
-                QuantityInHand = x.Stock.Sum(t => t.QuantityIn - t.QuantityOut),
                 ProductName = x.Name,
                 Description = x.Description,
                 UnitPrice = x.UnitPrice
@@ -69,7 +73,7 @@ namespace SleeperCell.Handlers
                 Barcode = product.Barcode,
                 CategoryName = product.Category.Name,
                 ID = product.Id,
-                QuantityInHand = product.Stock.Any() ? product.Stock.Sum(t => t.QuantityIn - t.QuantityOut) : 0,
+               // QuantityInHand = product.Stock.Any() ? product.Stock.Sum(t => t.QuantityIn - t.QuantityOut) : 0,
                 ProductName = product.Name,
                 Description = product.Description,
                 UnitCost = product.Stock.Any() ? product.Stock.Average(a => a.UnitCost) : 0,

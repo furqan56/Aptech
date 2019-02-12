@@ -29,5 +29,7 @@ namespace SleeperCell.Context
         public DbSet<Product> Products { get; set; }
         public DbSet<SaleOrder> Sales { get; set; }
         public DbSet<ProductStock> ProductStocks { get; set; }
+
+        public System.Data.Entity.DbSet<SleeperCell.Models.ProductStockViewModel> ProductStockViewModels { get; set; }
     }
 }

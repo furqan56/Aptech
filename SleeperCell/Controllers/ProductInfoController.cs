@@ -12,7 +12,7 @@ namespace SleeperCell.Controllers
     [RoutePrefix("Product")]
     public class ProductInfoController : Controller
     {
-        private ProductService _productService;
+      //  private ProductService _productService;
         // GET: ProductInfo
         [HttpGet,Route("info/{start}/{count}")]
         public ActionResult Index(int start,int count)
@@ -20,9 +20,9 @@ namespace SleeperCell.Controllers
             if (Request.IsAjaxRequest())
             {
                 //var data=new List<ProductViewModel>();
-                var data = _productService.GetAllProducts();
+               // var data = _productService.GetAllProducts();
 
-                return Json(data, JsonRequestBehavior.AllowGet);
+               // return Json(data, JsonRequestBehavior.AllowGet);
             }
 
             return View();

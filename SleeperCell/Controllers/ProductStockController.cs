@@ -12,7 +12,6 @@ namespace SleeperCell.Controllers
     {
         private ProductStockService _stockService;
         private ProductService _productService;
-        private VendorService _vendorService;
         
         // GET: Stock
 
@@ -35,7 +34,6 @@ namespace SleeperCell.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.VendorSelectList = _vendorService.GetSelectList();
             ViewBag.ProductSelectList = _productService.GetSelectList();
             return View();
         }

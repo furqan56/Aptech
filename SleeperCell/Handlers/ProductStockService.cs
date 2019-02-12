@@ -23,11 +23,9 @@ namespace SleeperCell.Handlers
             return _dbContext.ProductStocks.Select(x => new ProductStockViewModel
             {
                 Id = x.Id,
-                QuantityIn = x.QuantityIn,
-                QuantityOut = x.QuantityOut,
+                Quantity = x.Quantity,
                 UnitCost = x.UnitCost,
                 Product = x.Product.Name,
-                Vendor = x.Vendor.Name,
                 CreationDate = x.CreationDate
             }).ToList();
         }
