@@ -199,7 +199,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Handlers\CategoryService.cs" />
-    <Compile Include="Handlers\ProductRepository.cs" />
+    <Compile Include="Handlers\ProductService.cs" />
     <Compile Include="Handlers\ProductStockRepository.cs" />
     <Compile Include="Handlers\VendorRepositry.cs" />
     <Compile Include="Migrations\201901251108296_Init.cs" />
@@ -1829,6 +1829,9 @@
     <EmbeddedResource Include="Migrations\201902131008521_vendorAndProductStockRelationShip.resx">
       <DependentUpon>201902131008521_vendorAndProductStockRelationShip.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
