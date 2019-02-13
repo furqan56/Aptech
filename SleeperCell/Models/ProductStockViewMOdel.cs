@@ -13,6 +13,7 @@ namespace SleeperCell.Models
         public string ProductName { get; set; }
         public string Vendor { get; set; }
         public DateTime CreationDate { get; set; }
+        public string Category { get; set; }
     }
     
 }

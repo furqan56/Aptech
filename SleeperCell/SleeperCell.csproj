@@ -198,7 +198,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Handlers\CategoryService.cs" />
-    <Compile Include="Handlers\ProductRepository.cs" />
+    <Compile Include="Handlers\ProductService.cs" />
     <Compile Include="Handlers\ProductStockService.cs" />
     <Compile Include="Handlers\VendorRepositry.cs" />
     <Compile Include="Migrations\201901251108296_Init.cs" />
@@ -277,6 +277,7 @@
     <Content Include="Content\adminLTE\css\skins\skin-yellow.min.css" />
     <Content Include="Content\adminLTE\css\skins\_all-skins.css" />
     <Content Include="Content\adminLTE\css\skins\_all-skins.min.css" />
+    <Content Include="Content\dataTables.bootstrap.min.css" />
     <Content Include="Content\images\avatar.png" />
     <Content Include="Content\images\avatar04.png" />
     <Content Include="Content\images\avatar2.png" />
@@ -1714,11 +1715,13 @@
     <Content Include="Content\adminLTE\css\adminlte.css.map" />
     <Content Include="Content\adminLTE\css\adminlte.min.css.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\dataTables.bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
