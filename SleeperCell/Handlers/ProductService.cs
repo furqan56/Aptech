@@ -7,11 +7,11 @@ using SleeperCell.ObjectModel;
 
 namespace SleeperCell.Handlers
 {
-    public class ProductRepository
+    public class ProductService
     {
         private SleeperCellContext _dbContext;
 
-        public ProductRepository()
+        public ProductService()
         {
             _dbContext = new SleeperCellContext();
         }

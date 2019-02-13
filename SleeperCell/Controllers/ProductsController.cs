@@ -6,23 +6,23 @@ namespace SleeperCell.Controllers
 {
     public class ProductsController : Controller
     {
-        private ProductRepository _productRepository;
+        private ProductService _productService;
         private CategoryService _categoryService;
 
         // GET: Products
         public ProductsController()
         {
             _categoryService = new CategoryService();
-            _productRepository = new ProductRepository();
+            _productService = new ProductService();
         }
         public ActionResult Index()
         {
-            return View(_productRepository.GetAllProducts());
+            return View(_productService.GetAllProducts());
         }
         [HttpGet]
         public ActionResult Edit(int Id)
         {
-            var product = _productRepository.FindProduct(Id);
+            var product = _productService.FindProduct(Id);
             ViewBag.CategorySelectList = _categoryService.GetSelectList(product.CategoryId);
             return View();
         }
@@ -35,17 +35,17 @@ namespace SleeperCell.Controllers
         [HttpGet]
         public ActionResult Delete(int Id)
         {
-            return View(_productRepository.FindProduct(Id));
+            return View(_productService.FindProduct(Id));
         }
         [HttpGet]
         public ActionResult Details(int Id)
         {
-            return View(_productRepository.FindProduct(Id));
+            return View(_productService.FindProduct(Id));
         }
         [HttpPost]
         public ActionResult Delete(ProductViewModel model)
         {
-            _productRepository.Delete(model.Id);
+            _productService.Delete(model.Id);
             return RedirectToAction("Index");
         }
         [HttpPost]
@@ -53,7 +53,7 @@ namespace SleeperCell.Controllers
         {
             if (ModelState.IsValid)
             {
-                _productRepository.Update(model);
+                _productService.Update(model);
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -63,7 +63,7 @@ namespace SleeperCell.Controllers
         {
             if (ModelState.IsValid)
             {
-                _productRepository.AddProduct(model);
+                _productService.AddProduct(model);
                 return RedirectToAction("Index");
             }
             return View(model);
