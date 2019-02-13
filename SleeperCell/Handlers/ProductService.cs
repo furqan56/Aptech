@@ -29,7 +29,7 @@ namespace SleeperCell.Handlers
                 }).ToList();
          }
 
-        public List<Product> GetSelectList(int id, string Name)
+        public List<Product> GetProduct(int id, string Name)
         {
            return _dbContext.Products.Where(p => p.Id == id).ToList();
         }

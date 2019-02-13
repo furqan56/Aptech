@@ -13,7 +13,7 @@ namespace SleeperCell.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201902110950280_ProductStock "; }
+            get { return "201902122011551_ProductStock"; }
         }
         
         string IMigrationMetadata.Source

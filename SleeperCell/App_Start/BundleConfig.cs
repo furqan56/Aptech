@@ -29,11 +29,10 @@ namespace SleeperCell
             bundles.Add(new ScriptBundle("~/bundles/adminLTE").Include(
                         "~/Scripts/AdminLTE-JS/adminlte.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/DataTable-JS").Include(
-                        "~/Scripts/DataTable-JS/jquery.dataTables.min.js"));
-            bundles.Add(new ScriptBundle("~/bundles/DataTable-bs-JS").Include(
-                        "~/Scripts/DataTable-bs-JS/jquery.dataTables.min.js"));
-
-
+                        "~/Scripts/DataTable-JS/jquery.dataTables.min.js",
+                        "~/Scripts/DataTable-bs-JS/jquery.dataTables.min.js"
+                        ));
+            
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/adminLTE/css/AdminLTE.min.css",

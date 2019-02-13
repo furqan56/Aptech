@@ -8,14 +8,14 @@ namespace SleeperCell.Controllers
     [RoutePrefix("product")]
     public class ProductInfoController : Controller
     {
-        ProductRepository _productRepository = new ProductRepository(); 
+        ProductService _productService = new ProductService(); 
         // GET: ProductInfo
         [HttpGet, Route("info/{start}/{count}")]
         public ActionResult Index(int start, int count)
         {
             if (Request.IsAjaxRequest())
             {
-                var data = _productRepository.GetAllProducts().OrderByDescending(x => x.Id).Skip(start).Take(count);
+                var data = _productService.GetAllProducts().OrderByDescending(x => x.ID).Skip(start).Take(count);
                 return Json(data, JsonRequestBehavior.AllowGet);
             }
 

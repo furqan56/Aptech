@@ -25,7 +25,8 @@ namespace SleeperCell.Handlers
                 Id = x.Id,
                 Quantity = x.Quantity,
                 UnitCost = x.UnitCost,
-                Product = x.Product.Name,
+                ProductName = x.Product.Select(p=>p.Name).ToList(),
+                //RetailPrice = x.Product.UnitPrice,
                 CreationDate = x.CreationDate
             }).ToList();
         }
