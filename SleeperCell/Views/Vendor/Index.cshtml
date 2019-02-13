@@ -41,9 +41,17 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            <div class="dropdown">
+                <button class="btn btn-info text-black dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu bg-aqua" aria-labelledby="dropdownMenuButton">
+                    <li class="dropdown-item text-black list-group-item" href="#">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</li>
+                    <li class="dropdown-item text-black list-group-item" href="#">@Html.ActionLink("Details", "Details", new { id = item.Id })</li>
+                    <li class="dropdown-item text-black list-group-item" href="#">@Html.ActionLink("Delete", "Delete", new { id = item.Id })</li>
+                </ul>
+
+            </div>
         </td>
     </tr>
 }

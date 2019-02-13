@@ -185,6 +185,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Context\Configuration\ProductConfiguration.cs" />
     <Compile Include="Context\Configuration\SaleOrderDetailConfiguration.cs" />
+    <Compile Include="Context\Configuration\VendorConfiguration.cs" />
     <Compile Include="Context\SleeperCellContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
@@ -192,12 +193,14 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductInfoController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ProductStockController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Handlers\CategoryService.cs" />
     <Compile Include="Handlers\ProductRepository.cs" />
+    <Compile Include="Handlers\ProductStockRepository.cs" />
     <Compile Include="Handlers\VendorRepositry.cs" />
     <Compile Include="Migrations\201901251108296_Init.cs" />
     <Compile Include="Migrations\201901251108296_Init.Designer.cs">
@@ -214,6 +217,14 @@
     <Compile Include="Migrations\201902041036168_ProductCategoryRelationShipEstablised.cs" />
     <Compile Include="Migrations\201902041036168_ProductCategoryRelationShipEstablised.Designer.cs">
       <DependentUpon>201902041036168_ProductCategoryRelationShipEstablised.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902121814335_ProductStockAdded.cs" />
+    <Compile Include="Migrations\201902121814335_ProductStockAdded.Designer.cs">
+      <DependentUpon>201902121814335_ProductStockAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902131008521_vendorAndProductStockRelationShip.cs" />
+    <Compile Include="Migrations\201902131008521_vendorAndProductStockRelationShip.Designer.cs">
+      <DependentUpon>201902131008521_vendorAndProductStockRelationShip.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1775,6 +1786,9 @@
     <Content Include="Views\Vendor\Create.cshtml" />
     <Content Include="Views\Vendor\Edit.cshtml" />
     <Content Include="Views\Vendor\Delete.cshtml" />
+    <Content Include="Views\ProductStock\Index.cshtml" />
+    <Content Include="Views\ProductStock\Create.cshtml" />
+    <Content Include="Views\ProductStock\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1805,6 +1819,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902041036168_ProductCategoryRelationShipEstablised.resx">
       <DependentUpon>201902041036168_ProductCategoryRelationShipEstablised.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902121814335_ProductStockAdded.resx">
+      <DependentUpon>201902121814335_ProductStockAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902131008521_vendorAndProductStockRelationShip.resx">
+      <DependentUpon>201902131008521_vendorAndProductStockRelationShip.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

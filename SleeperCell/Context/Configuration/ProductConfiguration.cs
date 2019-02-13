@@ -11,6 +11,12 @@ namespace SleeperCell.Context.Configuration
                 .WithRequired(x => x.Product)
                 .HasForeignKey(x => x.ProductId).WillCascadeOnDelete(false);
 
+            HasMany(x => x.Stock)
+                .WithRequired(x => x.Product)
+                .HasForeignKey(x => x.ProductId).WillCascadeOnDelete(false);
+
+            
+
             HasRequired(x => x.Category)
                 .WithMany(x => x.Products).HasForeignKey(x => x.CategoryId);
         }

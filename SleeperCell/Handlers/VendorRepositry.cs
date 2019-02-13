@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using SleeperCell.Models;
 using SleeperCell.Context;
 using SleeperCell.ObjectModel;
@@ -20,6 +21,18 @@ namespace SleeperCell.Handlers
         }
 
         public static int VendorId { get; private set; } = 1;
+
+        public List<SelectListItem> GetVendorSelectList(int selectedId = -1)
+        {
+            return _dbContext.Vendors
+                .Select(x => new { x.Id, x.Name }).ToList()
+                .Select(x => new SelectListItem
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString(),
+                    Selected = selectedId == x.Id
+                }).ToList();
+        }
 
         public List<VendorViewModel> GetAllVendors()
         {
