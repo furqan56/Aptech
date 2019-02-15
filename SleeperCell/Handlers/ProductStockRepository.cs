@@ -34,13 +34,27 @@ namespace SleeperCell.Handlers
                 }).ToList();
         }
 
+        public ProductStockViewModel PopulateProductInStock(int productId)
+        {
+            var product = _dbContext.Products.Find(productId);
+
+            return new ProductStockViewModel
+            {
+                Category = product.Category.Name,
+                ProductId = product.Id,
+                Product = product.Name,
+                UnitPrice = product.UnitPrice,
+                
+            };
+        }
+
         public List<ProductStockViewModel> GetAllProductStocks()
         {
 
             return _dbContext.ProductStocks.Select(x => new ProductStockViewModel
             {
                 Product = x.Product.Name,
-               
+                Category = x.Product.Category.Name,
                 QuantityIn = x.QuantityIn,
                 Id = x.Id,
                 QuantityOut = x.QuantityOut,

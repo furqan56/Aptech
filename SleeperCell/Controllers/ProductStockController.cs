@@ -28,11 +28,19 @@ namespace SleeperCell.Controllers
         }
 
         // GET: ProductStock/Create
-        public ActionResult Create()
+        public ActionResult Create(int id = -1)
         {
             ViewBag.VendorSelectList = _VendorStockRepository.GetVendorSelectList();
             ViewBag.ProductSelectList = _ProductStockRepositry.GetProductSelectList();
-            return View();
+            if (id != -1)
+            {
+                var model = _ProductStockRepositry.PopulateProductInStock(id);
+                return View(model);
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // POST: ProductStock/Create
