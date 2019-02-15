@@ -1,64 +1,90 @@
 ﻿@model IEnumerable<SleeperCell.Models.ProductViewModel>
 
-    @{
+@{
     ViewBag.Title = "Products";
-    }
+}
 
-    <h2>Product List</h2>
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Product List | @Html.ActionLink("Create New", "Create")</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <table class="table table-bordered table-hover" id="productTable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CategoryName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Barcode)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UnitPrice)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.QuantityInHand)
+                    </th>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CategoryName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Barcode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UnitPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.QuantityInHand)
-            </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                   <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CategoryName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Barcode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UnitPrice)
+                        </td>
+                        <td>
+                            @Html.Raw(item.QuantityInHand ?? 0)
+                        </td>
 
-         </tr>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-danger">Action</button>
+                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>@Html.ActionLink("Edit", "Edit", new { id = item.ID })</li>
+                                    <li>@Html.ActionLink("Details", "Details", new { id = item.ID })</li>
+                                    <li>@Html.ActionLink("Delete", "Delete", new { id = item.ID })</li>
+                                    <li class="divider"></li>
+                                    <li>@Html.ActionLink("Add Stock", "Create", "ProductStock", new { id = item.ID }, null) </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#productTable').DataTable();
+        });
 
-        @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Barcode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnitPrice)
-            </td>
-            <td>
-                @Html.Raw(item.QuantityInHand ?? 0)
-            </td>
-
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {id = item.ID}) |
-                @Html.ActionLink("Details", "Details", new {id = item.ID}) |
-                @Html.ActionLink("Delete", "Delete", new {id = item.ID})
-            </td>
-        </tr>
-        }
-
-    </table>
+    </script>
+}

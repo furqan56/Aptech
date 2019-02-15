@@ -15,16 +15,22 @@
             @Html.DisplayNameFor(model => model.Quantity)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RetailPrice)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.UnitCost)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Product)
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vendor)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CreationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
         </th>
         <th></th>
     </tr>
@@ -35,16 +41,22 @@
             @Html.DisplayFor(modelItem => item.Quantity)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RetailPrice)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.UnitCost)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Product)
+            @Html.DisplayFor(modelItem => item.UnitPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vendor)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CreationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
