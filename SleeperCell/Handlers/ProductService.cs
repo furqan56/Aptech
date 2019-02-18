@@ -54,6 +54,7 @@ namespace SleeperCell.Handlers
             return new ProductViewModel
             {
                 Barcode = product.Barcode,
+                CategoryId = product.CategoryId,
                 CategoryName = product.Category.Name,
                 Id = product.Id,
                 QuantityInHand = product.Stock.Any() ? product.Stock.Sum(t => t.QuantityIn - t.QuantityOut) : 0,
@@ -69,7 +70,7 @@ namespace SleeperCell.Handlers
             var existingProduct = _dbContext.Products.Find(model.Id);
             if (existingProduct == null) return;
             existingProduct.Barcode = model.Barcode;
-            existingProduct.Category = new Category() { Id = model.Id };
+            existingProduct.CategoryId = model.CategoryId;
             existingProduct.Name = model.Name;
             existingProduct.Description = model.Description;
             existingProduct.UnitPrice = model.UnitPrice;
