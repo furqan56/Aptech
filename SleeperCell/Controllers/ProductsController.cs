@@ -24,7 +24,7 @@ namespace SleeperCell.Controllers
         {
             var product = _productService.FindProduct(Id);
             ViewBag.CategorySelectList = _categoryService.GetSelectList(product.CategoryId);
-            return View();
+            return View(product);
         }
         [HttpGet]
         public ActionResult Create()

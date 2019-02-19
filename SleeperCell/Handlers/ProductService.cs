@@ -69,7 +69,7 @@ namespace SleeperCell.Handlers
             var existingProduct = _dbContext.Products.Find(model.Id);
             if (existingProduct == null) return;
             existingProduct.Barcode = model.Barcode;
-            existingProduct.Category = new Category() { Id = model.Id };
+            existingProduct.CategoryId = model.CategoryId;
             existingProduct.Name = model.Name;
             existingProduct.Description = model.Description;
             existingProduct.UnitPrice = model.UnitPrice;
