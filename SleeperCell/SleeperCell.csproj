@@ -194,6 +194,7 @@
     <Compile Include="Controllers\ProductInfoController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProductStockController.cs" />
+    <Compile Include="Controllers\SaleOrderController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -201,6 +202,8 @@
     <Compile Include="Handlers\CategoryService.cs" />
     <Compile Include="Handlers\ProductService.cs" />
     <Compile Include="Handlers\ProductStockRepository.cs" />
+    <Compile Include="Handlers\SaleOrderDetailServices.cs" />
+    <Compile Include="Handlers\SaleOrderServices.cs" />
     <Compile Include="Handlers\VendorRepositry.cs" />
     <Compile Include="Migrations\201901251108296_Init.cs" />
     <Compile Include="Migrations\201901251108296_Init.Designer.cs">
@@ -226,6 +229,10 @@
     <Compile Include="Migrations\201902131008521_vendorAndProductStockRelationShip.Designer.cs">
       <DependentUpon>201902131008521_vendorAndProductStockRelationShip.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902201618134_SaleOrdersTablesCreated.cs" />
+    <Compile Include="Migrations\201902201618134_SaleOrdersTablesCreated.Designer.cs">
+      <DependentUpon>201902201618134_SaleOrdersTablesCreated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
@@ -234,6 +241,7 @@
     <Compile Include="Models\ProductSaleViewModel.cs" />
     <Compile Include="Models\ProductStockViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\SaleOrderDetailViewModel.cs" />
     <Compile Include="Models\SaleOrderViewModel.cs" />
     <Compile Include="Models\VendorViewModel.cs" />
     <Compile Include="ObjectModel\Category.cs" />
@@ -1792,6 +1800,8 @@
     <Content Include="Views\ProductStock\Index.cshtml" />
     <Content Include="Views\ProductStock\Create.cshtml" />
     <Content Include="Views\ProductStock\Edit.cshtml" />
+    <Content Include="Views\SaleOrder\Index.cshtml" />
+    <Content Include="Views\SaleOrder\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1828,6 +1838,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902131008521_vendorAndProductStockRelationShip.resx">
       <DependentUpon>201902131008521_vendorAndProductStockRelationShip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902201618134_SaleOrdersTablesCreated.resx">
+      <DependentUpon>201902201618134_SaleOrdersTablesCreated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

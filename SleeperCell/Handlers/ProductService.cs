@@ -55,6 +55,7 @@ namespace SleeperCell.Handlers
             {
                 Barcode = product.Barcode,
                 CategoryName = product.Category.Name,
+                CategoryId = product.CategoryId,
                 Id = product.Id,
                 QuantityInHand = product.Stock.Any() ? product.Stock.Sum(t => t.QuantityIn - t.QuantityOut) : 0,
                 Name = product.Name,

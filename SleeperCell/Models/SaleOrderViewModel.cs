@@ -6,8 +6,7 @@ using System.Web;
 
 namespace SleeperCell.Models
 {
-    [Table("Sales")]
-    public class SaleOrder
+    public class SaleOrderViewModel
     {
         
         public int Id { get; set; }
@@ -18,7 +17,7 @@ namespace SleeperCell.Models
         public double Total { get; set; }
         public double CashReceived { get; set; }
         public double CashReturn { get; set; }
-        //public List<SaleOrderDetail> Detail { get; set; }
+        public List<SaleOrderDetailViewModel> Detail { get; set; }
     }
 
     
