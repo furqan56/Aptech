@@ -1,4 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using Newtonsoft.Json;
 using SleeperCell.Handlers;
 using SleeperCell.Models;
 
@@ -15,9 +19,25 @@ namespace SleeperCell.Controllers
             _categoryService = new CategoryService();
             _productService = new ProductService();
         }
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(_productService.GetAllProducts());
+            //return View(_productService.GetAllProducts());
+
+            string url = "http://localhost:4567/api/products";
+
+            // ... Use HttpClient.
+            using (HttpClient client = new HttpClient())
+            using (var response = await client.GetAsync(url))
+            using (HttpContent content = response.Content)
+            {
+                // ... Read the string.
+                string resultString = await content.ReadAsStringAsync();
+                var products = JsonConvert.DeserializeObject<List<ProductViewModel>>(resultString);
+                // ... Display the result.
+                return View(products);
+            }
+
+            
         }
         [HttpGet]
         public ActionResult Edit(int Id)

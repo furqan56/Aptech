@@ -42,5 +42,11 @@ namespace SleeperCell.ApiControllers
 
             return Json(product);
         }
+
+        [HttpPut]
+        public IHttpActionResult Update(int id, [FromBody]ProductViewModel product)
+        {
+            return Ok();
+        }
     }
 }
