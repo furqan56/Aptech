@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Web.Mvc;
 using SleeperCell.Context;
 using SleeperCell.Models;
 using SleeperCell.ObjectModel;
@@ -14,6 +15,18 @@ namespace SleeperCell.Handlers
         public ProductService()
         {
             _dbContext = new SleeperCellContext();
+        }
+
+        public List<SelectListItem> GetProductSelectList(int selectedId = -1)
+        {
+            return _dbContext.Products
+                .Select(x => new { x.Id, x.Name }).ToList()
+                .Select(x => new SelectListItem
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString(),
+                    Selected = selectedId == x.Id
+                }).ToList();
         }
 
         public List<ProductViewModel> GetAllProducts()

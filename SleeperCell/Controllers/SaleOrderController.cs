@@ -10,11 +10,12 @@ namespace SleeperCell.Controllers
 {
     public class SaleOrderController : Controller
     {
-
+        private ProductService _productService;
         private SaleOrderServices _SaleOrderServices;
 
         public SaleOrderController()
         {
+            _productService = new ProductService();
             _SaleOrderServices = new SaleOrderServices();
         }
 
@@ -34,6 +35,7 @@ namespace SleeperCell.Controllers
         // GET: SaleOrder/Create
         public ActionResult Create()
         {
+            ViewBag.ProductSelectList = _productService.GetProductSelectList();
             return View();
         }
 
