@@ -16,13 +16,7 @@
         <h4>SaleOrderViewModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreationDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreationDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreationDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
+       
 
         <div class="form-group">
             @Html.LabelFor(model => model.CustomerId, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -35,7 +29,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SubTotal, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SubTotal, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.SubTotal, new { htmlAttributes = new { @class = "form-control", @id = "SubTotal", @onkeyup = "calculateSubTotal()" ,@readonly="true"} })
+       
                 @Html.ValidationMessageFor(model => model.SubTotal, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -51,6 +46,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Total, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                
                 @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger" })
             </div>
@@ -82,7 +78,26 @@
                 </tr>
             </thead>
             <tbody id="TableBody">
-               
+                <tr id="0">
+                    <td>
+                        @Html.DropDownList("Detail[0].ProductId", (IEnumerable<SelectListItem>)ViewBag.ProductSelectList, "Select Product", new { @class = "form-control" })
+                        @*@Html.DropDownListFor(model => model.Detail.FirstOrDefault().ProductId, (IEnumerable<SelectListItem>)ViewBag.ProductSelectList, "Select Product", new { @class = "form-control " })*@
+                        @Html.ValidationMessageFor(model => model.Detail.FirstOrDefault().ProductId, "", new { @class = "text - " })
+                    </td>
+                    <td>
+                        <input type="text" name="Detail[0].UnitPrice" class="form-control" onkeyup="OnkeyUp1(0)" property="unitprice" readonly />
+                        @*@Html.EditorFor(model => model.Detail.FirstOrDefault().UnitPrice, new {htmlAttributes = new {@class = "form-control"}})*@
+                        @Html.ValidationMessageFor(model => model.Detail.FirstOrDefault().UnitPrice, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        <input type="text" name="Detail[0].QtyOrdered" class="form-control" onkeyup="OnkeyUp1(0)" property="qty" />
+                        @*@Html.EditorFor(model => model.Detail.FirstOrDefault().QtyOrdered, new { htmlAttributs = new { @class = "form-control" } })*@
+                        @Html.ValidationMessageFor(model => model.Detail.FirstOrDefault().QtyOrdered, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        <input type="text" id="line" class="form-control" onkeyup="OnkeyUp1(0)" property="LineTotal" />
+                    </td>
+                </tr>
             </tbody>
         </table>
 
@@ -96,21 +111,24 @@
     </div>
 
     <template id="MyTableRow">
-        <tr>
+        <tr id="{{index}}">
             <td>
                 @Html.DropDownList("Detail[{{index}}].ProductId", (IEnumerable<SelectListItem>)ViewBag.ProductSelectList, "Select Product", new { @class = "form-control"})
                 @*@Html.DropDownListFor(model => model.Detail.FirstOrDefault().ProductId, (IEnumerable<SelectListItem>)ViewBag.ProductSelectList, "Select Product", new { @class = "form-control " })*@
                 @Html.ValidationMessageFor(model => model.Detail.FirstOrDefault().ProductId, "", new { @class = "text - " })
             </td>
-            <td>
-                <input type="text" name="Detail[{{index}}].UnitPrice" class="form-control" />
+            <td>               
+                <input type="text" name="Detail[{{index}}].UnitPrice" class="form-control" onkeyup="OnkeyUp1({{index}})" property="unitprice" readonly/>
                 @*@Html.EditorFor(model => model.Detail.FirstOrDefault().UnitPrice, new {htmlAttributes = new {@class = "form-control"}})*@
                 @Html.ValidationMessageFor(model => model.Detail.FirstOrDefault().UnitPrice, "", new {@class = "text-danger"})
             </td>
             <td>
-                <input type="text" name="Detail[{{index}}].QtyOrdered" class="form-control" />
+                <input type="text" name="Detail[{{index}}].QtyOrdered" class="form-control" onkeyup="OnkeyUp1({{index}})" property="qty"/>
                 @*@Html.EditorFor(model => model.Detail.FirstOrDefault().QtyOrdered, new { htmlAttributs = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.Detail.FirstOrDefault().QtyOrdered, "", new { @class = "text-danger" })
+            </td>
+            <td >
+               <input type="text" id="line" class="form-control" onkeyup="OnkeyUp1({{index}})" property="LineTotal"/>
             </td>
         </tr>
     </template>
@@ -124,7 +142,7 @@
 
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        var index = 0;
+        var index = 1;
         function neww() {
             var tbody = $("#TableBody");
             
@@ -135,6 +153,22 @@
 
             tbody.append(template);
             //t.innerHTML = t.innerHTML + row.innerHTML;     
+        }
+        function OnkeyUp1(getindex) {
+
+            var UnitPrice = $("#" + getindex + "  td:nth-child(2)").find("[property=unitprice]").val();
+            var Quantity = $("#" + getindex + "  td:nth-child(3)").find("[property=qty]").val();
+            $("#" + getindex + "  td:nth-child(4)").find("[property=LineTotal]").val(UnitPrice * Quantity);
+
+            calculateSubTotal();
+        }
+        function calculateSubTotal() {
+            var total = 0;
+            $('#TableBody tr').each(function (index, item) {
+                total += $(item).find('[property=qty]').val() * $(item).find('[property=unitprice]').val();
+                
+            });
+            $('#SubTotal').val(total);
         }
     </script>
 }
