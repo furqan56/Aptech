@@ -8,7 +8,7 @@ namespace SleeperCell.Controllers
     [RoutePrefix("product")]
     public class ProductInfoController : Controller
     {
-        ProductService _productService = new ProductService(); 
+        ProductService _productService = new ProductService();
         // GET: ProductInfo
         [HttpGet, Route("info/{start}/{count}")]
         public ActionResult Index(int start, int count)
@@ -21,6 +21,17 @@ namespace SleeperCell.Controllers
 
             return View();
         }
+        [HttpGet,Route("FIndProduct/{index}")]
+        public ActionResult FindProduct(int index)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                var UnitPrice = _productService.FindProduct(index).UnitPrice;
+                return Json(UnitPrice,JsonRequestBehavior.AllowGet);
+            }
+            return View();
+        }
+
 
         [HttpPost, Route("create")]
         public ActionResult Create(ProductViewModel model)

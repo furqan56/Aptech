@@ -1,14 +1,10 @@
 ﻿using SleeperCell.ObjectModel;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
 using SleeperCell.Context.Configuration;
 
 namespace SleeperCell.Context
 {
-    public class SleeperCellContext : DbContext
+    public class SleeperCellContext : Microsoft.AspNet.Identity.EntityFramework.IdentityDbContext
     {
         public SleeperCellContext() : base("name=DefaultConnection")
         {
@@ -29,6 +25,11 @@ namespace SleeperCell.Context
         public DbSet<Product> Products { get; set; }
         public DbSet<SaleOrder> Sales { get; set; }
         public DbSet<SaleOrderDetail> SaleOrderDetails { get; set; }
-        public DbSet<ProductStock> ProductStocks { get; set; } 
+        public DbSet<ProductStock> ProductStocks { get; set; }
+
+        public static SleeperCellContext Create()
+        {
+            return new SleeperCellContext();
+        }
     }
 }

@@ -26,6 +26,7 @@ namespace SleeperCell.Handlers
                     Text = x.Name,
                     Value = x.Id.ToString(),
                     Selected = selectedId == x.Id
+                    
                 }).ToList();
         }
 

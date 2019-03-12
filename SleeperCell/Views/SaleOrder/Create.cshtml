@@ -38,7 +38,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", @id = "discount" ,@onkeyup="calculateTotal()" } })
                 @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -47,7 +47,7 @@
             @Html.LabelFor(model => model.Total, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 
-                @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control" ,@id="Total",@readonly="true"} })
                 @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -55,15 +55,15 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CashReceived, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CashReceived, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.CashReceived, new { htmlAttributes = new { @class = "form-control",@id="cashRecieved", @onkeyup = "CashReturned()" } })
                 @Html.ValidationMessageFor(model => model.CashReceived, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CashReturn, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CashReturn, htmlAttributes: new { @class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CashReturn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.CashReturn, new { htmlAttributes = new { @class = "form-control" ,@id = "cashReturn" } })
                 @Html.ValidationMessageFor(model => model.CashReturn, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -78,26 +78,7 @@
                 </tr>
             </thead>
             <tbody id="TableBody">
-                <tr id="0">
-                    <td>
-                        @Html.DropDownList("Detail[0].ProductId", (IEnumerable<SelectListItem>)ViewBag.ProductSelectList, "Select Product", new { @class = "form-control" })
-                        @*@Html.DropDownListFor(model => model.Detail.FirstOrDefault().ProductId, (IEnumerable<SelectListItem>)ViewBag.ProductSelectList, "Select Product", new { @class = "form-control " })*@
-                        @Html.ValidationMessageFor(model => model.Detail.FirstOrDefault().ProductId, "", new { @class = "text - " })
-                    </td>
-                    <td>
-                        <input type="text" name="Detail[0].UnitPrice" class="form-control" onkeyup="OnkeyUp1(0)" property="unitprice" readonly />
-                        @*@Html.EditorFor(model => model.Detail.FirstOrDefault().UnitPrice, new {htmlAttributes = new {@class = "form-control"}})*@
-                        @Html.ValidationMessageFor(model => model.Detail.FirstOrDefault().UnitPrice, "", new { @class = "text-danger" })
-                    </td>
-                    <td>
-                        <input type="text" name="Detail[0].QtyOrdered" class="form-control" onkeyup="OnkeyUp1(0)" property="qty" />
-                        @*@Html.EditorFor(model => model.Detail.FirstOrDefault().QtyOrdered, new { htmlAttributs = new { @class = "form-control" } })*@
-                        @Html.ValidationMessageFor(model => model.Detail.FirstOrDefault().QtyOrdered, "", new { @class = "text-danger" })
-                    </td>
-                    <td>
-                        <input type="text" id="line" class="form-control" onkeyup="OnkeyUp1(0)" property="LineTotal" />
-                    </td>
-                </tr>
+                
             </tbody>
         </table>
 
@@ -113,7 +94,7 @@
     <template id="MyTableRow">
         <tr id="{{index}}">
             <td>
-                @Html.DropDownList("Detail[{{index}}].ProductId", (IEnumerable<SelectListItem>)ViewBag.ProductSelectList, "Select Product", new { @class = "form-control"})
+                @Html.DropDownList("Detail[{{index}}].ProductId", (IEnumerable<SelectListItem>)ViewBag.ProductSelectList, "Select Product", new { @class = "form-control",@onchange= "GetUnitPrice(this,{{index}})" })
                 @*@Html.DropDownListFor(model => model.Detail.FirstOrDefault().ProductId, (IEnumerable<SelectListItem>)ViewBag.ProductSelectList, "Select Product", new { @class = "form-control " })*@
                 @Html.ValidationMessageFor(model => model.Detail.FirstOrDefault().ProductId, "", new { @class = "text - " })
             </td>
@@ -128,10 +109,11 @@
                 @Html.ValidationMessageFor(model => model.Detail.FirstOrDefault().QtyOrdered, "", new { @class = "text-danger" })
             </td>
             <td >
-               <input type="text" id="line" class="form-control" onkeyup="OnkeyUp1({{index}})" property="LineTotal"/>
+               <input type="text" name="Detail[{{index}}].LineTotal" id="line" class="form-control"  property="LineTotal" readonly/>
             </td>
         </tr>
     </template>
+
 }
 
 <div>
@@ -142,7 +124,7 @@
 
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        var index = 1;
+        var index = 0;
         function neww() {
             var tbody = $("#TableBody");
             
@@ -154,6 +136,28 @@
             tbody.append(template);
             //t.innerHTML = t.innerHTML + row.innerHTML;     
         }
+        $(document).ready(function () {
+            neww();
+        })
+        function CashReturned() {
+            $("#cashReturn").val($("#cashRecieved").val() - $("#Total").val());
+        }
+        function GetUnitPrice(SelectedProductId,index) {
+            console.log(SelectedProductId.value);
+            $.ajax({
+                type: "GET",
+                url: "/product/FindProduct/" + SelectedProductId.value + "",
+                success: function (data) {
+                    console.log(data);
+                    $("#" + index + "  td:nth-child(2)").find("[property=unitprice]").val(data);
+                },
+                error: function (error) {
+                    console.log("error");
+                }
+            });
+
+        }
+
         function OnkeyUp1(getindex) {
 
             var UnitPrice = $("#" + getindex + "  td:nth-child(2)").find("[property=unitprice]").val();
@@ -163,12 +167,22 @@
             calculateSubTotal();
         }
         function calculateSubTotal() {
-            var total = 0;
+            var Subtotal = 0;
             $('#TableBody tr').each(function (index, item) {
-                total += $(item).find('[property=qty]').val() * $(item).find('[property=unitprice]').val();
+                Subtotal += $(item).find('[property=qty]').val() * $(item).find('[property=unitprice]').val();
                 
             });
-            $('#SubTotal').val(total);
+            $('#SubTotal').val(Subtotal);
+            calculateTotal(Subtotal);
         }
+        function calculateTotal(subtotal) {
+            //$.find('[property=Total]').val(subtotal - $.find('[property=discount]').val());
+            $("#Total").val(subtotal - $("#discount").val());
+        }
+        function calculateTotal() {
+            //$.find('[property=Total]').val(subtotal - $.find('[property=discount]').val());
+            $("#Total").val($("#SubTotal").val() - $("#discount").val());
+        }
+        
     </script>
 }

@@ -235,6 +235,10 @@
     <Compile Include="Migrations\201902201618134_SaleOrdersTablesCreated.Designer.cs">
       <DependentUpon>201902201618134_SaleOrdersTablesCreated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903121147150_IdentitySetup.cs" />
+    <Compile Include="Migrations\201903121147150_IdentitySetup.Designer.cs">
+      <DependentUpon>201903121147150_IdentitySetup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
@@ -1843,6 +1847,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902201618134_SaleOrdersTablesCreated.resx">
       <DependentUpon>201902201618134_SaleOrdersTablesCreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903121147150_IdentitySetup.resx">
+      <DependentUpon>201903121147150_IdentitySetup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

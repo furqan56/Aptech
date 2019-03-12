@@ -36,6 +36,7 @@ namespace SleeperCell.Controllers
         public ActionResult Create()
         {
             ViewBag.ProductSelectList = _productService.GetProductSelectList();
+            ViewBag.products = _productService.GetAllProducts();
             return View();
         }
 
