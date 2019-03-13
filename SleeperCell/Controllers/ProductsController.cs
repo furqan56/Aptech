@@ -27,6 +27,7 @@ namespace SleeperCell.Controllers
             return View(product);
         }
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.CategorySelectList = _categoryService.GetSelectList();
