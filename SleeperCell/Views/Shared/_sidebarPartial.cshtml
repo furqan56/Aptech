@@ -7,7 +7,7 @@
                 <img src="~/Content/images/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>@User.Identity.Name</p>
                 <!-- Status -->
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -49,14 +49,14 @@
             <li class="disabled"><a href="/SaleOrder"><i class="fa fa-link"></i> <span>Sale</span></a></li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-link"></i> <span>Multilevel</span>
+                    <i class="fa fa-link"></i> <span>User Manager</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Link in level 2</a></li>
-                    <li><a href="#">Link in level 2</a></li>
+                    <li><a href="/Account/Register">Add User</a></li>
+                    <li><a href="/Manage/ChangePassword">Change Password</a></li>
                 </ul>
             </li>
         </ul>

@@ -120,14 +120,14 @@
                         <!-- The user image in the navbar-->
                         <img src="~/Content/images/user2-160x160.jpg" class="user-image" alt="User Image">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">Alexander Pierce</span>
+                        <span class="hidden-xs">@User.Identity.Name</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
                             <img src="~/Content/images/user2-160x160.jpg" class="img-circle" alt="User Image">
                             <p>
-                                Alexander Pierce - Web Developer
+                                @User.Identity.Name - Web Developer
                                 <small>Member since Nov. 2012</small>
                             </p>
                         </li>
@@ -135,7 +135,7 @@
                         <li class="user-body">
                             <div class="row">
                                 <div class="col-xs-4 text-center">
-                                    <a href="#">Followers</a>
+                                    <a href="/Account/Delete">Delete Account</a>
                                 </div>
                                 <div class="col-xs-4 text-center">
                                     <a href="#">Sales</a>

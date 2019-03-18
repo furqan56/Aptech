@@ -54,6 +54,7 @@ namespace SleeperCell.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.UserName = User.Identity.Name;
                 _productService.Update(model);
                 return RedirectToAction("Index");
             }
@@ -64,6 +65,7 @@ namespace SleeperCell.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.UserName = User.Identity.Name;
                 _productService.AddProduct(model);
                 return RedirectToAction("Index");
             }

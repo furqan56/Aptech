@@ -14,8 +14,7 @@ namespace SleeperCell.Migrations
 
     internal sealed class Configuration : DbMigrationsConfiguration<SleeperCell.Context.SleeperCellContext>
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+       
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;

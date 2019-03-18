@@ -53,6 +53,7 @@ namespace SleeperCell.Handlers
                 Total = model.Total,
                 Detail = SaleOrderDetailViewModelIntoSaleOrderDetail(model.Detail)
             });
+            _dbContext.SaveChanges();
         }
 
         List<SaleOrderDetail> SaleOrderDetailViewModelIntoSaleOrderDetail( List<SaleOrderDetailViewModel> saleOrderDetailViewModels )

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -17,9 +18,11 @@ namespace SleeperCell.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        SleeperCell.Context.SleeperCellContext _db;
 
         public AccountController()
         {
+           _db = new Context.SleeperCellContext(); 
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -136,12 +139,25 @@ namespace SleeperCell.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        
+        [Authorize(Roles ="Admin")]
         public ActionResult Register()
         {
+            ViewBag.RoleSelectList = GetRoleSelectList();
             return View();
         }
+        public List<SelectListItem> GetRoleSelectList(string selectedId = "-1")
+        {
+            return _db.Roles
+                .Select(x => new { x.Id, x.Name }).ToList()
+                .Select(x => new SelectListItem
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString(),
+                    Selected = (selectedId == x.Id)
 
+                }).ToList();
+        }
         //
         // POST: /Account/Register
         [HttpPost]
@@ -153,6 +169,7 @@ namespace SleeperCell.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                UserManager.AddToRole(user.Id, _db.Roles.Find(model.Role).Name);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
@@ -481,5 +498,25 @@ namespace SleeperCell.Controllers
             }
         }
         #endregion
+        [HttpGet]
+        public ActionResult Delete()
+        {
+            return View(_db.Users.Find(User.Identity.GetUserId()));
+        }
+        [HttpPost]
+        public ActionResult Delete(ApplicationUser model)
+        {
+            try
+            {
+                UserManager.SetLockoutEnabled(User.Identity.GetUserId(), true);
+                UserManager.SetLockoutEndDate(User.Identity.GetUserId(), DateTime.UtcNow.AddYears(10));
+                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                return View("Lockout");
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }

@@ -239,6 +239,10 @@
     <Compile Include="Migrations\201903121147150_IdentitySetup.Designer.cs">
       <DependentUpon>201903121147150_IdentitySetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903180834400_UserNameStoreInProductDetails.cs" />
+    <Compile Include="Migrations\201903180834400_UserNameStoreInProductDetails.Designer.cs">
+      <DependentUpon>201903180834400_UserNameStoreInProductDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
@@ -1808,6 +1812,7 @@
     <Content Include="Views\ProductStock\Edit.cshtml" />
     <Content Include="Views\SaleOrder\Index.cshtml" />
     <Content Include="Views\SaleOrder\Create.cshtml" />
+    <Content Include="Views\Account\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1850,6 +1855,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903121147150_IdentitySetup.resx">
       <DependentUpon>201903121147150_IdentitySetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903180834400_UserNameStoreInProductDetails.resx">
+      <DependentUpon>201903180834400_UserNameStoreInProductDetails.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

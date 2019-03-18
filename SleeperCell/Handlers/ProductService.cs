@@ -41,6 +41,7 @@ namespace SleeperCell.Handlers
                 QuantityInHand = x.Stock.Sum(t => t.QuantityIn - t.QuantityOut),
                 Name = x.Name,
                 Description = x.Description,
+                UserName = x.UserName,
                 UnitPrice = x.UnitPrice
             }).ToList();
         }
@@ -53,7 +54,8 @@ namespace SleeperCell.Handlers
                 CategoryId = model.CategoryId,
                 Name = model.Name,
                 Description = model.Description,
-                UnitPrice = model.UnitPrice
+                UnitPrice = model.UnitPrice,
+                UserName = model.UserName
             };
             _dbContext.Products.Add(product);
 
@@ -71,6 +73,7 @@ namespace SleeperCell.Handlers
                 CategoryName = product.Category.Name,
                 CategoryId = product.CategoryId,
                 Id = product.Id,
+                UserName =product.UserName,
                 QuantityInHand = product.Stock.Any() ? product.Stock.Sum(t => t.QuantityIn - t.QuantityOut) : 0,
                 Name = product.Name,
                 Description = product.Description,
@@ -86,6 +89,7 @@ namespace SleeperCell.Handlers
             existingProduct.Barcode = model.Barcode;
             existingProduct.CategoryId = model.CategoryId;
             existingProduct.Name = model.Name;
+            existingProduct.UserName = model.UserName;
             existingProduct.Description = model.Description;
             existingProduct.UnitPrice = model.UnitPrice;
             _dbContext.Entry(existingProduct).State = System.Data.Entity.EntityState.Modified;
