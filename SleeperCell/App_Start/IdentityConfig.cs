@@ -12,15 +12,33 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using SleeperCell.Context;
 using SleeperCell.Models;
+using SendGrid;
+using System.Net;
+
+using System.Configuration;
+using System.Diagnostics;
+using SendGrid.Helpers.Mail;
 
 namespace SleeperCell
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        private SendGridClient _sendGridClient;
+
+        public EmailService()
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            _sendGridClient = new SendGridClient(ConfigurationManager.AppSettings["ApiKey"]);
+        }
+        public async Task SendAsync(IdentityMessage message)
+        {
+            await configSendGridasync(message);
+        }
+
+        // Use NuGet to install SendGrid (Basic C# client lib) 
+        private async Task configSendGridasync(IdentityMessage message)
+        {
+            var mailMessage = MailHelper.CreateSingleEmail(new EmailAddress("info@sleepercell.com"), new EmailAddress(message.Destination), message.Subject, message.Body,null);
+            await _sendGridClient.SendEmailAsync(mailMessage);    
         }
     }
 
