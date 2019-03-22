@@ -4,63 +4,87 @@
     ViewBag.Title = "Vendor List";
 }
 
-@*<h2>Vendor List</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th></th>
-    </tr>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1  id="exampleModalLabel">Create Vendor
+                </h1>
+            </div>
+            <div class="modal-body">
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                <div class="dropdown">
-                    <button class="btn btn-info text-black dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        More <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu bg-aqua" aria-labelledby="dropdownMenuButton">
-                        <li class="dropdown-item text-black list-group-item" href="#">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</li>
-                        <li class="dropdown-item text-black list-group-item" href="#">@Html.ActionLink("Details", "Details", new { id = item.Id })</li>
-                        <li class="dropdown-item text-black list-group-item" href="#">@Html.ActionLink("Delete", "Delete", new { id = item.Id })</li>
-                    </ul>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
 
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label>Name:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input class="form-control " id="CreateName" placeholder="Vendor Name">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label>Phone No:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input class="form-control " id="CreatePhone" placeholder="Phone Number">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label>Email:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input class="form-control " id="CreateEmail" placeholder="Email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label>Address:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input class="form-control " id="CreateAddress" placeholder="Address">
+                            </div>
+                        </div>
+                    </div>
+                  
                 </div>
-            </td>
-        </tr>
-    }
-
-</table>*@
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="ModalSaveButton" onclick="CreateData()" data-dismiss="modal">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Vendor List | @Html.ActionLink("Create New", "Create")</h3>
+        <h3 class="box-title">Vendor List | 
+            <button type="button" class="btn btn-primary" onclick="changeModal()" data-toggle="modal" data-target="#exampleModal1">
+                Create
+            </button>
+        </h3>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
@@ -109,9 +133,9 @@
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li>@Html.ActionLink("Edit", "Edit", new { id = item.Id })</li>
-                                    <li>@Html.ActionLink("Details", "Details", new { id = item.Id })</li>
-                                    <li>@Html.ActionLink("Delete", "Delete", new { id = item.Id })</li>
+                                    <li data-toggle="modal" data-target="#exampleModal1" onclick="detailModal('@item.Name','@item.Phone','@item.Email','@item.Address')"><a>Detail</a></li>
+                                    <li data-toggle="modal" data-target="#exampleModal1" onclick="updateModal('@item.Name','@item.Phone','@item.Email','@item.Address',@item.Id)"><a>Edit</a></li>
+                                    <li data-toggle="modal" data-target="#exampleModal1" onclick="deleteModal('@item.Name','@item.Phone','@item.Email','@item.Address',@item.Id)"><a>Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -126,6 +150,151 @@
         $(document).ready(function () {
             $('#productTable').DataTable();
         });
+        function updateModal(name, phone, email, address, id) {
+            $("#exampleModalLabel").text("Edit Vendor");
+            $("#CreateName").val(name);
+            $("#CreatePhone").val(phone);
+            $("#CreateEmail").val(email);
+            $("#CreateAddress").val(address);
+            $("#CreateName").removeAttr("readonly");
+            $("#CreatePhone").removeAttr("readonly");
+            $("#CreateEmail").removeAttr("readonly");
+            $("#CreateAddress").removeAttr("readonly");
+            $("#ModalSaveButton").attr("onclick", "UpdateData(" + id + ")");
+            $("#ModalSaveButton").text("Save Changes");
+            $("#ModalSaveButton").show();
+        }
+        function changeModal() {
+            $("#exampleModalLabel").text("Create Vendor");
+            $("#ModalSaveButton").text("Create");
+            $("#CreateName").val(null);
+            $("#CreatePhone").val(null);
+            $("#CreateEmail").val(null);
+            $("#CreateAddress").val(null);
+            $("#CreateName").removeAttr("readonly");
+            $("#CreatePhone").removeAttr("readonly");
+            $("#CreateEmail").removeAttr("readonly");
+            $("#CreateAddress").removeAttr("readonly");
+            $("#ModalSaveButton").show();
+        }
+        function detailModal(name, phone, email, address) {
+            $("#exampleModalLabel").text("Vendor Detail");
+            $("#CreateName").val(name);
+            $("#CreatePhone").val(phone);
+            $("#CreateEmail").val(email);
+            $("#CreateAddress").val(address);
+            $("#CreateName").attr("readonly", "true");
+            $("#CreatePhone").attr("readonly", "true");
+            $("#CreateEmail").attr("readonly", "true");
+            $("#CreateAddress").attr("readonly", "true");
+            $("#ModalSaveButton").hide();
+        }
+        function deleteModal(name, phone, email, address, id) {
+            $("#exampleModalLabel").text("Delete Vendor");
+            $("#CreateName").val(name);
+            $("#CreatePhone").val(phone);
+            $("#CreateEmail").val(email);
+            $("#CreateAddress").val(address);
+            $("#CreateName").attr("readonly", "true");
+            $("#CreatePhone").attr("readonly", "true");
+            $("#CreateEmail").attr("readonly", "true");
+            $("#CreateAddress").attr("readonly", "true");
+            $("#ModalSaveButton").text("Delete");
+            $("#ModalSaveButton").attr("onclick", "DeleteData(" + id + ")");
+        }
 
+        function DeleteData(id) {
+            var Create_Name = $("#CreateName").val();
+            var Create_phone = $("#CreatePhone").val();
+            var Create_Email = $("#CreateEmail").val();
+            var Create_Address = $("#CreateAddress").val();
+
+            var VendorModel = {
+                'Name': Create_Name,
+                'Phone': Create_phone,
+                'Email': Create_Email,
+                'Address': Create_Address,
+                'Id': id
+            };
+            $.ajax({
+                type: "POST",
+                method: 'POST',
+                processData: false,
+                url: "/Vendor/Delete",
+                contentType: "application/json",
+                data: JSON.stringify(VendorModel),
+                success: function (response) {
+                    console.log(response);
+
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+            location.reload(true);
+        }
+
+        function UpdateData(id) {
+            var Create_Name = $("#CreateName").val();
+            var Create_phone = $("#CreatePhone").val();
+            var Create_Email = $("#CreateEmail").val();
+            var Create_Address = $("#CreateAddress").val();
+
+            var VendorModel = {
+                'Name': Create_Name,
+                'Phone': Create_phone,
+                'Email': Create_Email,
+                'Address': Create_Address,
+                'Id': id
+            };
+            $.ajax({
+                type: "POST",
+                method: 'POST',
+                processData: false,
+                url: "/Vendor/Edit",
+                contentType: "application/json",
+                data: JSON.stringify(VendorModel),
+                success: function (response) {
+                    console.log(response);
+
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+            location.reload(true);
+        }
+
+      
+        function CreateData() {
+            var Create_Name = $("#CreateName").val();
+            var Create_phone = $("#CreatePhone").val();
+            var Create_Email = $("#CreateEmail").val();
+            var Create_Address = $("#CreateAddress").val();
+
+            var VendorModel = {
+                'Name': Create_Name,
+                'Phone': Create_phone,
+                'Email': Create_Email,
+                'Address': Create_Address,
+               
+            };
+            $.ajax({
+                type: "POST",
+                method: 'POST',
+                processData: false,
+                url: "/Vendor/create",
+                contentType: "application/json",
+                data: JSON.stringify(VendorModel),
+                success: function (response) {
+                    console.log(response);
+                   
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+            location.reload(true);
+        }
     </script>
 }

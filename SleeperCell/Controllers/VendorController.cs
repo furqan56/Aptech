@@ -39,6 +39,17 @@ namespace SleeperCell.Controllers
         [HttpPost]
         public ActionResult Create(VendorViewModel model)
         {
+            if (Request.IsAjaxRequest())
+            {
+                var response = new
+                {
+                    Status = 200,
+                    StatusText = "OK"
+                };
+                
+                _VendorRepositry.AddVendor(model);
+                return Json(response);
+            }
             try
             {
                 // TODO: Add insert logic here
@@ -61,6 +72,17 @@ namespace SleeperCell.Controllers
         [HttpPost]
         public ActionResult Edit(VendorViewModel model)
         {
+            if (Request.IsAjaxRequest())
+            {
+                var response = new
+                {
+                    Status = 200,
+                    StatusText = "OK"
+                };
+
+                _VendorRepositry.Update(model);
+                return Json(response);
+            }
             try
             {
                 // TODO: Add update logic here
@@ -83,6 +105,17 @@ namespace SleeperCell.Controllers
         [HttpPost]
         public ActionResult Delete(VendorViewModel model)
         {
+            if (Request.IsAjaxRequest())
+            {
+                var response = new
+                {
+                    Status = 200,
+                    StatusText = "OK"
+                };
+
+                _VendorRepositry.Delete(model.Id);
+                return Json(response);
+            }
             try
             {
                 // TODO: Add delete logic here
